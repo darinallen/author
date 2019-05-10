@@ -1,0 +1,116 @@
+@import '../styles/media-queries.css';
+@import '../styles/vars.css';
+
+.root {
+}
+
+.title {
+  composes: responsiveTitle1 from './typography.module.css';
+}
+
+.mainImage {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 2rem;
+  cursor: pointer;
+
+  @nest & img {
+    height: 50vh;
+    border: solid 2px;
+    border-top-color: #ccb;
+    border-right-color: #eed;
+    border-bottom-color: #ffe;
+    border-left-color: #eed;
+    min-height: 100%;
+  }
+}
+
+.frame {
+  background-color: #f8f7f6;
+  border-radius: 2px;
+  border: solid 5vmin rgb(220, 220, 220);
+  border-top-color: rgb(235, 235, 235);
+  border-right-color: rgb(220, 220, 220);
+  border-bottom-color: rgb(202, 202, 202);
+  border-left-color: rgb(220, 220, 220);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35) inset, 0 3px 5px 3px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 3vmin;
+  position: relative;
+  text-align: center;
+  max-height: 100%;
+  transition: 0.5s;
+}
+
+.frame:before {
+  border-radius: 2px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35) inset;
+  content: '';
+  position: absolute;
+  top: -2vmin;
+  right: -2vmin;
+  bottom: -2vmin;
+  left: -2vmin;
+}
+
+.frame:after {
+  border-radius: 2px;
+  bottom: -2.5vmin;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  content: '';
+  left: -2.5vmin;
+  position: absolute;
+  right: -2.5vmin;
+  top: -2.5vmin;
+}
+
+.frame:hover {
+  background-color: #e7e6e5;
+  transform: translateY(-3px);
+  border: solid 5vmin rgb(200, 200, 200);
+  border-top-color: rgb(215, 215, 215);
+  border-right-color: rgb(200, 200, 200);
+  border-bottom-color: rgb(182, 182, 182);
+  border-left-color: rgb(200, 200, 200);
+}
+
+/* .mainContent {
+  @nest & a {
+    color: var(--color-accent);
+
+    @media (hover: hover) {
+      @nest &:hover {
+        color: inherit;
+      }
+    }
+  }
+} */
+
+.metaContent {
+}
+
+.creationDate {
+  composes: small from './typography.module.css';
+  margin: 1.5rem 0 3rem;
+}
+
+.categories {
+  border-top: 1px solid var(--color-black);
+  margin: 2rem 0 3rem;
+
+  @nest & ul {
+    list-style: none;
+    margin: 0.75rem 0;
+    padding: 0;
+  }
+
+  @nest & ul li {
+    padding: 0.25rem 0;
+  }
+}
+
+.categoriesHeadline {
+  composes: base from './typography.module.css';
+  margin: 0.5rem 0 0;
+}

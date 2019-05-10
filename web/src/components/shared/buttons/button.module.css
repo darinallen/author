@@ -1,0 +1,46 @@
+.root,
+.root:visited {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: bold;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  margin: 0;
+  border-radius: 3px;
+}
+
+.root:hover {
+  cursor: pointer;
+}
+
+.primary {
+  color: var(--color-white);
+  background: var(--color-primary);
+  border: 1px solid black;
+}
+
+.primary:hover {
+  background-color: var(--color-primary-highlight);
+}
+
+.accent {
+  color: var(--color-white);
+  background: var(--color-accent);
+  border: 1px solid var(--color-white);
+}
+
+.accent:hover {
+  background-color: var(--color-accent-highlight);
+}
+
+.white {
+  color: var(--color-accent);
+  background: var(--color-white);
+  border: 1px solid var(--color-accent);
+}
+
+.white:hover {
+  color: var(--color-white);
+  background: var(--color-accent-highlight);
+  border: 1px solid var(--color-white);
+}

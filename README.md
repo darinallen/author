@@ -1,2 +1,2 @@
-# author-site
-A platform for authors to promote their works
+# author
+A platform for authors and artists

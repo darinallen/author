@@ -1,0 +1,9 @@
+:root {
+  --color-black: #333;
+  --color-white: #fff;
+  --color-grey: #ccc;
+  --color-primary: #2a5d99;
+  --color-primary-highlight: #174170;
+  --color-accent: rgb(255, 105, 0);
+  --color-accent-highlight: rgb(240, 119, 33);
+}

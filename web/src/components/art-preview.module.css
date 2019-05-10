@@ -1,0 +1,197 @@
+@import '../styles/vars.css';
+@import '../styles/media-queries.css';
+@import './typography.module.css';
+
+.root {
+  text-decoration: none;
+  color: inherit;
+  flex-direction: column;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  line-height: 0;
+}
+
+/* .title {
+  margin-top: 0;
+  font-size: var(--font-small-size);
+  line-height: var(--font-base-line-height);
+
+  @media (--media-min-small) {
+    font-size: var(--font-large-size);
+    line-height: var(--font-large-line-height);
+  }
+
+  @media (hover: hover) {
+    @nest .root:hover & {
+      text-decoration: underline;
+    }
+  }
+} */
+
+.featured {
+  @media (--media-min-medium) {
+    max-width: 220px;
+  }
+}
+
+.frame {
+  background-color: #f8f7f6;
+  border-radius: 2px;
+  border: solid 10vmin rgb(220, 220, 220);
+  border-top-color: rgb(235, 235, 235);
+  border-right-color: rgb(220, 220, 220);
+  border-bottom-color: rgb(202, 202, 202);
+  border-left-color: rgb(220, 220, 220);
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35) inset, 0 3px 5px 3px rgba(0, 0, 0, 0.35);
+  box-sizing: border-box;
+  display: inline-block;
+  padding: 6vmin;
+  position: relative;
+  text-align: center;
+  width: 100%;
+  max-height: 100%;
+  transition: 0.5s;
+
+  @media (--media-min-small) {
+    border: solid 6vmin rgb(220, 220, 220);
+    border-top-color: rgb(235, 235, 235);
+    border-right-color: rgb(220, 220, 220);
+    border-bottom-color: rgb(202, 202, 202);
+    border-left-color: rgb(220, 220, 220);
+    padding: 3vmin;
+  }
+
+  @media (--media-min-medium) {
+    border: solid 4vmin rgb(220, 220, 220);
+    border-top-color: rgb(235, 235, 235);
+    border-right-color: rgb(220, 220, 220);
+    border-bottom-color: rgb(202, 202, 202);
+    border-left-color: rgb(220, 220, 220);
+    padding: 2vmin;
+  }
+
+  @media (--media-min-large) {
+    border: solid 3vmin rgb(220, 220, 220);
+    border-top-color: rgb(235, 235, 235);
+    border-right-color: rgb(220, 220, 220);
+    border-bottom-color: rgb(202, 202, 202);
+    border-left-color: rgb(220, 220, 220);
+    padding: 1.5vmin;
+  }
+}
+
+.frame:before {
+  border-radius: 2px;
+  box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35) inset;
+  content: '';
+  position: absolute;
+  top: -4vmin;
+  right: -4vmin;
+  bottom: -4vmin;
+  left: -4vmin;
+
+  @media (--media-min-small) {
+    top: -3vmin;
+    right: -3vmin;
+    bottom: -3vmin;
+    left: -3vmin;
+  }
+
+  @media (--media-min-medium) {
+    top: -2vmin;
+    right: -2vmin;
+    bottom: -2vmin;
+    left: -2vmin;
+  }
+
+  @media (--media-min-large) {
+    top: -1.5vmin;
+    right: -1.5vmin;
+    bottom: -1.5vmin;
+    left: -1.5vmin;
+  }
+}
+.frame:after {
+  border-radius: 2px;
+  bottom: -5vmin;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
+  content: '';
+  left: -5vmin;
+  position: absolute;
+  right: -5vmin;
+  top: -5vmin;
+
+  @media (--media-min-small) {
+    top: -4vmin;
+    right: -4vmin;
+    bottom: -4vmin;
+    left: -4vmin;
+  }
+
+  @media (--media-min-medium) {
+    top: -2.5vmin;
+    right: -2.5vmin;
+    bottom: -2.5vmin;
+    left: -2.5vmin;
+  }
+
+  @media (--media-min-large) {
+    top: -1.875vmin;
+    right: -1.875vmin;
+    bottom: -1.875vmin;
+    left: -1.875vmin;
+  }
+}
+
+.frame:hover {
+  background-color: #e7e6e5;
+  transform: translateY(-3px);
+  border: solid 10vmin rgb(200, 200, 200);
+  border-top-color: rgb(215, 215, 215);
+  border-right-color: rgb(200, 200, 200);
+  border-bottom-color: rgb(182, 182, 182);
+  border-left-color: rgb(200, 200, 200);
+
+  @media (--media-min-small) {
+    transform: translateY(-3px);
+    border: solid 6vmin rgb(200, 200, 200);
+    border-top-color: rgb(215, 215, 215);
+    border-right-color: rgb(200, 200, 200);
+    border-bottom-color: rgb(182, 182, 182);
+    border-left-color: rgb(200, 200, 200);
+  }
+
+  @media (--media-min-medium) {
+    transform: translateY(-3px);
+    border: solid 4vmin rgb(200, 200, 200);
+    border-top-color: rgb(215, 215, 215);
+    border-right-color: rgb(200, 200, 200);
+    border-bottom-color: rgb(182, 182, 182);
+    border-left-color: rgb(200, 200, 200);
+  }
+
+  @media (--media-min-large) {
+    transform: translateY(-3px);
+    border: solid 3vmin rgb(200, 200, 200);
+    border-top-color: rgb(215, 215, 215);
+    border-right-color: rgb(200, 200, 200);
+    border-bottom-color: rgb(182, 182, 182);
+    border-left-color: rgb(200, 200, 200);
+  }
+}
+
+.art {
+  border: solid 2px;
+  border-top-color: #ccb;
+  border-right-color: #eed;
+  border-bottom-color: #ffe;
+  border-left-color: #eed;
+  width: 100%;
+  max-height: 100%;
+}
+
+.frame:hover .art {
+  filter: contrast(1.2);
+}

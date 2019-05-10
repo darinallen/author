@@ -1,0 +1,150 @@
+0 silly argv { _: [ 'run' ],
+0 silly argv   parallel: true,
+0 silly argv   lernaVersion: '3.13.1',
+0 silly argv   '$0':
+0 silly argv    '/Users/darin/dev/clients/author-sanity/node_modules/.bin/lerna',
+0 silly argv   script: 'start' }
+1 notice cli v3.13.1
+2 verbose rootPath /Users/darin/dev/clients/author-sanity
+3 silly batched [ PackageGraphNode {
+3 silly batched     name: 'example-company-website-gatsby-sanity-combo-studio',
+3 silly batched     externalDependencies:
+3 silly batched      Map {
+3 silly batched        'eslint' => [Object],
+3 silly batched        'eslint-config-standard' => [Object],
+3 silly batched        'eslint-config-standard-react' => [Object],
+3 silly batched        'eslint-plugin-import' => [Object],
+3 silly batched        'eslint-plugin-node' => [Object],
+3 silly batched        'eslint-plugin-promise' => [Object],
+3 silly batched        'eslint-plugin-react' => [Object],
+3 silly batched        'eslint-plugin-standard' => [Object],
+3 silly batched        'prettier-eslint-cli' => [Object],
+3 silly batched        '@sanity/base' => [Object],
+3 silly batched        '@sanity/components' => [Object],
+3 silly batched        '@sanity/core' => [Object],
+3 silly batched        '@sanity/default-layout' => [Object],
+3 silly batched        '@sanity/default-login' => [Object],
+3 silly batched        '@sanity/desk-tool' => [Object],
+3 silly batched        'prop-types' => [Object],
+3 silly batched        'react' => [Object],
+3 silly batched        'react-dom' => [Object] },
+3 silly batched     localDependencies: Map {},
+3 silly batched     localDependents: Map {} },
+3 silly batched   PackageGraphNode {
+3 silly batched     name: 'example-company-website-gatsby-sanity-combo-frontend',
+3 silly batched     externalDependencies:
+3 silly batched      Map {
+3 silly batched        'eslint' => [Object],
+3 silly batched        'eslint-config-standard' => [Object],
+3 silly batched        'eslint-config-standard-react' => [Object],
+3 silly batched        'eslint-plugin-import' => [Object],
+3 silly batched        'eslint-plugin-node' => [Object],
+3 silly batched        'eslint-plugin-promise' => [Object],
+3 silly batched        'eslint-plugin-react' => [Object],
+3 silly batched        'eslint-plugin-standard' => [Object],
+3 silly batched        'prettier-eslint-cli' => [Object],
+3 silly batched        '@sanity/block-content-to-react' => [Object],
+3 silly batched        '@sanity/image-url' => [Object],
+3 silly batched        'date-fns' => [Object],
+3 silly batched        'dotenv' => [Object],
+3 silly batched        'gatsby' => [Object],
+3 silly batched        'gatsby-plugin-postcss' => [Object],
+3 silly batched        'gatsby-plugin-react-helmet' => [Object],
+3 silly batched        'gatsby-source-sanity' => [Object],
+3 silly batched        'postcss-import' => [Object],
+3 silly batched        'postcss-preset-env' => [Object],
+3 silly batched        'react' => [Object],
+3 silly batched        'react-dom' => [Object],
+3 silly batched        'react-helmet' => [Object] },
+3 silly batched     localDependencies: Map {},
+3 silly batched     localDependents: Map {} } ]
+4 info Executing command in 2 packages: "npm run start"
+5 silly npmRunScript.stream [ 'start',
+5 silly npmRunScript.stream   [],
+5 silly npmRunScript.stream   'example-company-website-gatsby-sanity-combo-studio' ]
+6 silly getExecOpts /Users/darin/dev/clients/author-sanity/studio undefined
+7 silly npmRunScript.stream [ 'start',
+7 silly npmRunScript.stream   [],
+7 silly npmRunScript.stream   'example-company-website-gatsby-sanity-combo-frontend' ]
+8 silly getExecOpts /Users/darin/dev/clients/author-sanity/web undefined
+9 error Error: Command failed: npm run start
+9 error
+9 error
+9 error > example-company-website-gatsby-sanity-combo-frontend@1.0.0 start /Users/darin/dev/clients/author-sanity/web
+9 error > npm run develop
+9 error
+9 error
+9 error > example-company-website-gatsby-sanity-combo-frontend@1.0.0 develop /Users/darin/dev/clients/author-sanity/web
+9 error > gatsby develop
+9 error
+9 error success open and validate gatsby-configs — 0.009 s
+9 error success load plugins — 0.157 s
+9 error success onPreInit — 0.518 s
+9 error success initialize cache — 0.005 s
+9 error success copy gatsby files — 0.082 s
+9 error info [sanity] Fetching remote GraphQL schema
+9 error info [sanity] Transforming to Gatsby-compatible GraphQL SDL
+9 error info [sanity] Stitching GraphQL schemas from SDL
+9 error success onPreBootstrap — 0.473 s
+9 error info [sanity] Fetching export stream for dataset
+9 error info [sanity] Watch mode enabled, starting a listener
+9 error info [sanity] Done exporting!
+9 error success source and transform nodes — 0.220 s
+9 error success building schema — 0.482 s
+9 error info Creating blog post page: /blog/1969/12/my-first-blog-post/
+9 error info Creating blog post page: /blog/1969/12/strange-new-worlds/
+9 error info Creating blog post page: /blog/1969/12/far-away-galaxies/
+9 error info Creating project page: /project/author-con-2019/
+9 error info Creating project page: /project/writers-meetup/
+9 error success createPages — 0.050 s
+9 error success createPagesStatefully — 0.057 s
+9 error success onPreExtractQueries — 0.002 s
+9 error success update schema — 0.018 s
+9 error success extract queries from components — 0.130 s
+9 error success run graphql queries — 0.065 s — 9/9 145.13 queries/second
+9 error success write out page data — 0.005 s
+9 error success write out redirect data — 0.002 s
+9 error success onPostBootstrap — 0.001 s
+9 error
+9 error info bootstrap finished - 5.69408738 s
+9 error
+9 error  DONE  Compiled successfully in 4033ms5:02:28 PM
+9 error
+9 error
+9 error You can now view example-company-website-gatsby-sanity-combo-frontend in the browser.
+9 error
+9 error   http://localhost:8000/
+9 error
+9 error View GraphiQL, an in-browser IDE, to explore your site's data and schema
+9 error
+9 error   http://localhost:8000/___graphql
+9 error
+9 error Note that the development build is not optimized.
+9 error To create a production build, use npm run build
+9 error
+9 error [34mℹ[39m [90m｢wdm｣[39m:
+9 error [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+9 error  WAIT  Compiling...5:02:28 PM
+9 error
+9 error [34mℹ[39m [90m｢wdm｣[39m: Compiling...
+9 error  DONE  Compiled successfully in 59ms5:02:28 PM
+9 error
+9 error [34mℹ[39m [90m｢wdm｣[39m:
+9 error [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+9 error  WAIT  Compiling...5:04:26 PM
+9 error
+9 error [34mℹ[39m [90m｢wdm｣[39m: Compiling...
+9 error  DONE  Compiled successfully in 384ms5:04:27 PM
+9 error
+9 error [34mℹ[39m [90m｢wdm｣[39m:
+9 error [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+9 error  WAIT  Compiling...5:04:32 PM
+9 error
+9 error [34mℹ[39m [90m｢wdm｣[39m: Compiling...
+9 error  DONE  Compiled successfully in 303ms5:04:32 PM
+9 error
+9 error [34mℹ[39m [90m｢wdm｣[39m:
+9 error [34mℹ[39m [90m｢wdm｣[39m: Compiled successfully.
+9 error
+9 error     at makeError (/Users/darin/dev/clients/author-sanity/node_modules/execa/index.js:174:9)
+9 error     at Promise.all.then.arr (/Users/darin/dev/clients/author-sanity/node_modules/execa/index.js:278:16)

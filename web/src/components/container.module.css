@@ -1,0 +1,20 @@
+@import '../styles/media-queries.css';
+
+.white {
+  background-color: inherit;
+}
+
+.primary {
+  background-color: var(--color-primary);
+}
+
+.box {
+  box-sizing: border-box;
+  max-width: 1000px;
+  padding: 1.5em;
+  margin: 0 auto;
+
+  @media (--media-min-small) {
+    padding: 2em;
+  }
+}
