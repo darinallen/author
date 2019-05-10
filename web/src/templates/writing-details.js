@@ -39,6 +39,7 @@ export const query = graphql`
       }
       title
       classification
+      retailUrl
       slug {
         current
       }

@@ -34,9 +34,13 @@ const FeaturedWriting = ({ node }) => (
             .url()}
           alt={node.mainImage.alt}
         />
-        <div className={styles.button}>
-          <ButtonLink color='accent'>Buy Now</ButtonLink>
-        </div>
+        {node.retailUrl && (
+          <div className={styles.button}>
+            <ButtonLink color='accent' url={node.retailUrl}>
+              Buy Now
+            </ButtonLink>
+          </div>
+        )}
       </div>
       <div className={styles.text}>
         <h3 className={styles.title}>{node.title}</h3>

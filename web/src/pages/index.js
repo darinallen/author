@@ -169,6 +169,7 @@ export const query = graphql`
             alt
           }
           title
+          retailUrl
           featured
           _rawExcerpt
           _rawDescription

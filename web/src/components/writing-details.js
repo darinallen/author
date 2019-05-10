@@ -18,7 +18,8 @@ function WritingDetails (props) {
     title,
     mainImage,
     releaseDate,
-    classification
+    classification,
+    retailUrl
   } = props
 
   const [activeTab, setActiveTab] = useState('summary')
@@ -73,12 +74,14 @@ function WritingDetails (props) {
 
         <div className={styles.doubleDivider} />
         <nav className={styles.nav}>
-          <a
-            className={cn(styles.navItem, activeTab === 'summary' ? styles.activeTab : '')}
-            onClick={() => setActiveTab('summary')}
-          >
-            SUMMARY
-          </a>
+          {_rawDescription && (
+            <a
+              className={cn(styles.navItem, activeTab === 'summary' ? styles.activeTab : '')}
+              onClick={() => setActiveTab('summary')}
+            >
+              SUMMARY
+            </a>
+          )}
           {_rawExcerpt && (
             <a
               className={cn(styles.navItem, activeTab === 'excerpt' ? styles.activeTab : '')}
@@ -87,8 +90,8 @@ function WritingDetails (props) {
               EXCERPT
             </a>
           )}
-          {_rawDescription && (
-            <a href='https://amazon.com' className={styles.navItem} target='_blank'>
+          {retailUrl && (
+            <a href={retailUrl} className={styles.navItem} target='_blank'>
               PURCHASE
             </a>
           )}
@@ -108,9 +111,13 @@ function WritingDetails (props) {
             )}
           </ReactCSSTransitionReplace>
 
-          <div className={styles.button}>
-            <ButtonLink color='primary'>Buy Now</ButtonLink>
-          </div>
+          {retailUrl && (
+            <div className={styles.button}>
+              <ButtonLink color='primary' url={retailUrl}>
+                Buy Now
+              </ButtonLink>
+            </div>
+          )}
         </div>
       </Container>
     </div>
