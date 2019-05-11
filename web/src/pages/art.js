@@ -32,7 +32,7 @@ const ArtPage = props => {
         image={art}
         titleTop='Digital '
         titleBottom='Art'
-        subtitle='Original Designs & Creations'
+        subtitle='Original Designs & Abstract Creations'
       />
       <Container>
         <h2 className={responsiveTitle2}>Art</h2>

@@ -79,6 +79,10 @@
   }
 }
 
+.navItem:last-child {
+  margin-right: 0;
+}
+
 .navItem:hover {
   color: var(--color-primary-highlight);
   text-decoration: underline;
