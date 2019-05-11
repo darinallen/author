@@ -44,7 +44,7 @@ const FeaturedWriting = ({ node }) => (
       </div>
       <div className={styles.text}>
         <h3 className={styles.title}>{node.title}</h3>
-        <BlockContent blocks={node._rawDescription} />
+        <BlockContent blocks={node._rawSummary} />
       </div>
     </div>
   </div>

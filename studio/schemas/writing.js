@@ -9,7 +9,11 @@ export default {
     {
       name: 'title',
       title: 'Title',
-      type: 'string'
+      type: 'string',
+      validation: Rule =>
+        Rule.required()
+          .min(10)
+          .max(80)
     },
     {
       name: 'featured',
@@ -28,26 +32,16 @@ export default {
       }
     },
     {
-      name: 'releaseDate',
-      title: 'Release date',
-      description: 'You can use this field to set the release date for the written work',
-      type: 'datetime'
-    },
-    {
-      name: 'excerpt',
-      title: 'Excerpt',
-      type: 'blockText'
-    },
-    {
       name: 'authors',
       title: 'Authors',
       type: 'array',
       of: [{ type: 'postAuthor' }]
     },
     {
-      name: 'mainImage',
-      title: 'Main image',
-      type: 'mainImage'
+      name: 'releaseDate',
+      title: 'Release date',
+      description: 'You can use this field to set the release date for the written work',
+      type: 'datetime'
     },
     {
       name: 'classification',
@@ -62,15 +56,25 @@ export default {
       }
     },
     {
+      name: 'summary',
+      title: 'Summary',
+      type: 'blockContent'
+    },
+    {
+      name: 'excerpt',
+      title: 'Excerpt',
+      type: 'blockText'
+    },
+    {
+      name: 'mainImage',
+      title: 'Main image',
+      type: 'mainImage'
+    },
+    {
       name: 'categories',
       title: 'Categories',
       type: 'array',
       of: [{ type: 'reference', to: { type: 'category' } }]
-    },
-    {
-      name: 'description',
-      title: 'Description',
-      type: 'blockContent'
     },
     {
       name: 'retailUrl',

@@ -172,7 +172,7 @@ export const query = graphql`
           retailUrl
           featured
           _rawExcerpt
-          _rawDescription
+          _rawSummary
           slug {
             current
           }

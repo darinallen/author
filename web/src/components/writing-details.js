@@ -12,7 +12,7 @@ import styles from './writing-details.module.css'
 
 function WritingDetails (props) {
   const {
-    _rawDescription,
+    _rawSummary,
     _rawExcerpt,
     categories,
     title,
@@ -74,7 +74,7 @@ function WritingDetails (props) {
 
         <div className={styles.doubleDivider} />
         <nav className={styles.nav}>
-          {_rawDescription && (
+          {_rawSummary && (
             <a
               className={cn(styles.navItem, activeTab === 'summary' ? styles.activeTab : '')}
               onClick={() => setActiveTab('summary')}
@@ -104,8 +104,8 @@ function WritingDetails (props) {
             transitionEnterTimeout={500}
             transitionLeaveTimeout={500}
           >
-            {_rawDescription && activeTab === 'summary' ? (
-              <SummaryContent description={_rawDescription} key='summary' />
+            {_rawSummary && activeTab === 'summary' ? (
+              <SummaryContent summary={_rawSummary} key='summary' />
             ) : (
               <ExcerptContent excerpt={_rawExcerpt} key='excerpt' />
             )}
@@ -126,9 +126,9 @@ function WritingDetails (props) {
 
 export default WritingDetails
 
-const SummaryContent = ({ description }) => (
+const SummaryContent = ({ summary }) => (
   <div id='summary'>
-    <BlockContent blocks={description} />
+    <BlockContent blocks={summary} />
   </div>
 )
 
