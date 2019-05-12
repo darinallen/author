@@ -19,6 +19,7 @@
   padding: 0;
   list-style: none;
   display: grid;
+  grid-auto-rows: 1fr;
   grid-template-columns: 1fr;
   grid-column-gap: 2em;
   grid-row-gap: 2em;

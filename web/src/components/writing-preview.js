@@ -19,7 +19,7 @@ const WritingPreview = props => (
           alt={props.mainImage.alt}
         />
       </div>
-      <span className={styles.summary}>This is the book summary. It is a very exciting book!</span>
+      <span className={styles.summary}>{props.preview}</span>
     </div>
   </Link>
 )
