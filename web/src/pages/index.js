@@ -170,6 +170,7 @@ export const query = graphql`
           }
           title
           preview
+          classification
           retailUrl
           featured
           _rawExcerpt
