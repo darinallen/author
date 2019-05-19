@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'gatsby'
+import DefaultBookCover from './shared/default-book-cover'
 import { buildImageObj, getWritingUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import styles from './writing-preview.module.css'
@@ -12,13 +13,17 @@ const WritingPreview = props => {
       </div>
       <div className={styles.content}>
         <div className={styles.bookCoverContainer}>
-          <img
-            className={styles.bookCover}
-            src={imageUrlFor(buildImageObj(props.mainImage))
-              .width(200)
-              .url()}
-            alt={props.mainImage.alt}
-          />
+          {props.mainImage ? (
+            <img
+              className={styles.bookCover}
+              src={imageUrlFor(buildImageObj(props.mainImage))
+                .width(200)
+                .url()}
+              alt={props.mainImage.alt}
+            />
+          ) : (
+            <DefaultBookCover title={props.title} />
+          )}
         </div>
         <div className={styles.preview}>
           <span className={styles.previewText}>{props.preview}</span>

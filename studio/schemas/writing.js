@@ -79,7 +79,7 @@ export default {
     },
     {
       name: 'mainImage',
-      title: 'Main image',
+      title: 'Book cover',
       type: 'mainImage'
     },
     {

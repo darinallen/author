@@ -28,6 +28,11 @@
   src: url('../fonts/ROCK.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: Yellowtail;
+  src: url('../fonts/Yellowtail-Regular.ttf') format('truetype');
+}
+
 html {
   font-family: 'Quattrocento Sans', -apple-system, BlinkMacSystemFont, sans-serif;
   font-size: var(--font-base-size);

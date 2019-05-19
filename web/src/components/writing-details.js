@@ -45,9 +45,12 @@ function WritingDetails (props) {
   return (
     <div className={styles.root}>
       <Hero
-        image={imageUrlFor(buildImageObj(mainImage))
-          .width(400)
-          .url()}
+        image={
+          mainImage &&
+          imageUrlFor(buildImageObj(mainImage))
+            .width(400)
+            .url()
+        }
         titleTop={heroTitle}
         subtitle={title}
         shadow

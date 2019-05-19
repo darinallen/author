@@ -1,0 +1,124 @@
+@import '../../styles/vars.css';
+@import '../../styles/media-queries.css';
+@import '../typography.module.css';
+
+.root {
+  margin: 0 auto 0.3rem auto;
+  position: relative;
+  width: 80%;
+  height: 20vw;
+  background-color: var(--color-secondary);
+  padding: 10px;
+  box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  height: 350px;
+  max-height: 80vw;
+
+  @media (--media-min-small) {
+    height: 300px;
+    max-height: 35vw;
+  }
+
+  @media (--media-min-medium) {
+    max-height: calc(25vw);
+  }
+
+  @media (--media-min-xlarge) {
+    max-height: none;
+  }
+}
+
+.hero {
+  width: 8rem;
+  height: 200px;
+  margin: 0 0 1.5rem 0;
+  max-height: none;
+
+  @media (--media-min-medium) {
+    height: 240px;
+    width: 10rem;
+    margin-bottom: 0;
+  }
+}
+
+.edge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 22px;
+  background-color: #d5d5d5;
+  border: 1px solid #aaa;
+  border-right: 4px solid #c4c4c4;
+}
+
+.content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 22px;
+}
+
+.titleContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin-top: 10px;
+  color: var(--color-white);
+}
+
+/* .titleContainerInner {
+  display: inline-block;
+  width: 100%;
+  padding: 5px;
+  border: 5px solid var(--color-secondary);
+  background-color: #ebebeb;
+} */
+
+.title {
+  display: inline-block;
+  font-family: 'Yellowtail', cursive;
+  font-size: var(--font-title3-size);
+
+  @media (--media-min-small) {
+    font-size: 3vw;
+  }
+
+  @media (--media-min-medium) {
+    font-size: 2vw;
+  }
+
+  @media (--media-min-large) {
+    font-size: var(--font-title3-size);
+  }
+}
+
+.hero .title {
+  font-size: var(--font-title3-size);
+  text-align: center;
+}
+
+.author {
+  font-family: Exo2;
+  margin-bottom: 5px;
+  color: var(--color-white);
+
+  @media (--media-min-small) {
+    font-size: 2vw;
+  }
+
+  @media (--media-min-medium) {
+    font-size: 1.5vw;
+  }
+
+  @media (--media-min-large) {
+    font-size: 16px;
+  }
+}
+
+.hero .author {
+  font-size: 16px;
+  text-align: center;
+}
