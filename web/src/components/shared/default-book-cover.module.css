@@ -3,31 +3,19 @@
 @import '../typography.module.css';
 
 .root {
-  margin: 0 auto 0.3rem auto;
-  position: relative;
-  width: 80%;
-  height: 20vw;
+  /* margin: 0 auto 0.3rem auto; */
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--color-secondary);
   padding: 10px;
   box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
-  height: 350px;
-  max-height: 80vw;
-
-  @media (--media-min-small) {
-    height: 300px;
-    max-height: 35vw;
-  }
-
-  @media (--media-min-medium) {
-    max-height: calc(25vw);
-  }
-
-  @media (--media-min-xlarge) {
-    max-height: none;
-  }
 }
 
 .hero {
+  position: relative;
   width: 8rem;
   height: 200px;
   margin: 0 0 1.5rem 0;
@@ -45,7 +33,7 @@
   top: 0;
   left: 0;
   height: 100%;
-  width: 22px;
+  width: 13%;
   background-color: #d5d5d5;
   border: 1px solid #aaa;
   border-right: 4px solid #c4c4c4;

@@ -63,6 +63,12 @@ export const query = graphql`
           mainImage {
             asset {
               _id
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
             }
             alt
           }
@@ -74,6 +80,7 @@ export const query = graphql`
           }
           categories {
             title
+            id
           }
         }
       }
