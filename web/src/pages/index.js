@@ -9,7 +9,7 @@ import tAnthony from '../components/shared/hero/tanthony.png'
 import Container from '../components/container'
 import PreviewGrid from '../components/shared/preview-grid'
 import WritingPreview from '../components/writing-preview'
-import ArtPreview from '../components/art-preview'
+import ArtGrid from '../components/art-grid'
 import Featured from '../components/featured'
 import BlogPostPreview from '../components/blog-post-preview'
 import styles from './index.module.css'
@@ -79,12 +79,7 @@ const IndexPage = props => {
         )}
         {artNodes && (
           <PreviewGrid title='Recent art' browseMoreHref='/art/'>
-            {artNodes &&
-              artNodes.map(node => (
-                <li key={node.id}>
-                  <ArtPreview {...node} />
-                </li>
-              ))}
+            <ArtGrid nodes={artNodes} />
           </PreviewGrid>
         )}
       </Container>
@@ -200,6 +195,7 @@ export const query = graphql`
           mainImage {
             asset {
               _id
+              url
               metadata {
                 lqip
                 dimensions {

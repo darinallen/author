@@ -13,8 +13,6 @@ function ArtDetails (props) {
 
   const [isExpanded, setIsExpanded] = useState(false)
 
-  console.log({ mainImage })
-
   return (
     <div className={styles.root}>
       <Container>

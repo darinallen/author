@@ -11,24 +11,11 @@
   align-items: center;
   height: 100%;
   line-height: 0;
+
+  @media (--media-max-small) {
+    padding: 0 2rem;
+  }
 }
-
-/* .title {
-  margin-top: 0;
-  font-size: var(--font-small-size);
-  line-height: var(--font-base-line-height);
-
-  @media (--media-min-small) {
-    font-size: var(--font-large-size);
-    line-height: var(--font-large-line-height);
-  }
-
-  @media (hover: hover) {
-    @nest .root:hover & {
-      text-decoration: underline;
-    }
-  }
-} */
 
 .featured {
   @media (--media-min-medium) {
@@ -39,7 +26,7 @@
 .frame {
   background-color: #f8f7f6;
   border-radius: 2px;
-  border: solid 10vmin rgb(220, 220, 220);
+  border: solid 8vmin rgb(220, 220, 220);
   border-top-color: rgb(235, 235, 235);
   border-right-color: rgb(220, 220, 220);
   border-bottom-color: rgb(202, 202, 202);
@@ -47,12 +34,11 @@
   box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35) inset, 0 3px 5px 3px rgba(0, 0, 0, 0.35);
   box-sizing: border-box;
   display: inline-block;
-  padding: 6vmin;
   position: relative;
   text-align: center;
-  width: 100%;
   max-height: 100%;
-  transition: 0.5s;
+  width: 100%;
+  padding: 4vmin;
 
   @media (--media-min-small) {
     border: solid 6vmin rgb(220, 220, 220);
@@ -87,10 +73,10 @@
   box-shadow: 0 2px 3px 0 rgba(0, 0, 0, 0.35) inset;
   content: '';
   position: absolute;
-  top: -4vmin;
-  right: -4vmin;
-  bottom: -4vmin;
-  left: -4vmin;
+  top: -3.5vmin;
+  right: -3.5vmin;
+  bottom: -3.5vmin;
+  left: -3.5vmin;
 
   @media (--media-min-small) {
     top: -3vmin;
@@ -115,13 +101,13 @@
 }
 .frame:after {
   border-radius: 2px;
-  bottom: -5vmin;
+  bottom: -4.5vmin;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.25);
   content: '';
-  left: -5vmin;
+  left: -4.5vmin;
   position: absolute;
-  right: -5vmin;
-  top: -5vmin;
+  right: -4.5vmin;
+  top: -4.5vmin;
 
   @media (--media-min-small) {
     top: -4vmin;
@@ -182,14 +168,24 @@
   }
 }
 
+.artFigure {
+  position: relative;
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin: 0;
+}
+
 .art {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: opacity 1s ease-in;
   border: solid 2px;
   border-top-color: #ccb;
   border-right-color: #eed;
   border-bottom-color: #ffe;
   border-left-color: #eed;
-  width: 100%;
-  max-height: 100%;
 }
 
 .frame:hover .art {

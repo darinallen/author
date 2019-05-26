@@ -8,7 +8,7 @@ import Layout from '../containers/layout'
 import Hero from '../components/shared/hero/hero'
 import art from '../components/shared/hero/art.png'
 import PreviewGrid from '../components/shared/preview-grid'
-import ArtPreview from '../components/art-preview'
+import ArtGrid from '../components/art-grid'
 
 import { responsiveTitle2 } from '../components/typography.module.css'
 
@@ -38,7 +38,7 @@ const ArtPage = props => {
         <h2 className={responsiveTitle2}>Art</h2>
         {artNodes && (
           <PreviewGrid>
-            {artNodes && artNodes.map(node => <li key={node.id}>{<ArtPreview {...node} />}</li>)}
+            <ArtGrid nodes={artNodes} />
           </PreviewGrid>
         )}
       </Container>
@@ -58,6 +58,7 @@ export const query = graphql`
           mainImage {
             asset {
               _id
+              url
               metadata {
                 lqip
                 dimensions {

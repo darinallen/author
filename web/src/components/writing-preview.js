@@ -6,17 +6,8 @@ import { imageUrlFor } from '../lib/image-url'
 import styles from './writing-preview.module.css'
 
 const WritingPreview = props => {
-  if (props.mainImage) {
-    console.log(
-      'props.mainImage.asset.metadata.dimensions.aspectRatio: ',
-      props.mainImage.asset.metadata.dimensions.aspectRatio
-    )
-  }
   return (
     <Link className={styles.root} to={getWritingUrl(props.slug.current)}>
-      <div className={styles.header}>
-        <h3 className={styles.title}>{props.title}</h3>
-      </div>
       <div className={styles.content}>
         <figure
           className={styles.bookCoverFigure}
@@ -43,7 +34,7 @@ const WritingPreview = props => {
             <DefaultBookCover title={props.title} />
           )}
         </figure>
-        <p className={styles.summary}>Writing summary goes here</p>
+        <h3 className={styles.title}>{props.title}</h3>
       </div>
     </Link>
   )

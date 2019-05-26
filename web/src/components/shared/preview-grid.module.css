@@ -20,8 +20,8 @@
   list-style: none;
   display: grid;
   grid-template-columns: 1fr;
-  grid-column-gap: 2em;
-  grid-row-gap: 2em;
+  grid-column-gap: 3em;
+  grid-row-gap: 3em;
 
   @media (--media-min-small) {
     grid-template-columns: 1fr 1fr;
