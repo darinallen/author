@@ -36,9 +36,18 @@ export function buildImageObj (source) {
   return imageObj
 }
 
-export function getFeaturedNodes (writingNodes, artNodes) {
-  return {
-    writingNodes: writingNodes.filter(node => node.featured),
-    artNodes: artNodes.filter(node => node.featured)
+export function getFeaturedNodes ({ writingNodes, artNodes }) {
+  const nodes = {}
+  const featuredWritingNodes = writingNodes ? writingNodes.filter(node => node.featured) : []
+  const featuredArtNodes = artNodes ? artNodes.filter(node => node.featured) : []
+
+  if (featuredWritingNodes.length) {
+    nodes.writingNodes = featuredWritingNodes
   }
+
+  if (featuredArtNodes.length) {
+    nodes.artNodes = featuredArtNodes
+  }
+
+  return nodes
 }

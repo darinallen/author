@@ -1,11 +1,12 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes } from '../lib/helpers'
+import { mapEdgesToNodes, getFeaturedNodes } from '../lib/helpers'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
 import Hero from '../components/shared/hero/hero'
+import Featured from '../components/shared/featured/featured'
 import art from '../components/shared/hero/art.png'
 import PreviewGrid from '../components/shared/preview-grid'
 import ArtGrid from '../components/art-grid'
@@ -24,6 +25,8 @@ const ArtPage = props => {
   }
 
   const artNodes = data && data.art && mapEdgesToNodes(data.art)
+  const featuredNodes = getFeaturedNodes({ artNodes })
+  const showFeatured = !!featuredNodes.artNodes.length
 
   return (
     <Layout>
@@ -35,6 +38,7 @@ const ArtPage = props => {
         subtitle='Original Designs & Abstract Creations'
       />
       <Container>
+        {showFeatured && <Featured nodes={featuredNodes} />}
         <h2 className={responsiveTitle2}>Art</h2>
         {artNodes && (
           <PreviewGrid>
@@ -68,7 +72,9 @@ export const query = graphql`
             }
             alt
           }
+          featured
           title
+          _rawDescription
           slug {
             current
           }

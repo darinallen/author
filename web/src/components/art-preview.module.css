@@ -17,12 +17,6 @@
   }
 }
 
-.featured {
-  @media (--media-min-medium) {
-    max-width: 220px;
-  }
-}
-
 .frame {
   background-color: #f8f7f6;
   border-radius: 2px;

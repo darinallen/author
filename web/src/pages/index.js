@@ -10,7 +10,7 @@ import Container from '../components/container'
 import PreviewGrid from '../components/shared/preview-grid'
 import WritingPreview from '../components/writing-preview'
 import ArtGrid from '../components/art-grid'
-import Featured from '../components/featured'
+import Featured from '../components/shared/featured/featured'
 import BlogPostPreview from '../components/blog-post-preview'
 import styles from './index.module.css'
 import typography from '../components/typography.module.css'
@@ -39,8 +39,9 @@ const IndexPage = props => {
     ? mapEdgesToNodes(data.art).filter(filterOutDocsWithoutSlugs)
     : []
 
-  const featuredNodes = getFeaturedNodes(writingNodes, artNodes)
-  const showFeatured = featuredNodes.writingNodes.length
+  const featuredNodes = getFeaturedNodes({ writingNodes, artNodes })
+
+  const showFeatured = !!featuredNodes.writingNodes.length || !!featuredNodes.artNodes.length
 
   if (!site) {
     throw new Error(
@@ -85,7 +86,7 @@ const IndexPage = props => {
       </Container>
       {showFeatured && (
         <Container color='primary'>
-          <Featured nodes={featuredNodes} />
+          <Featured nodes={featuredNodes} home />
         </Container>
       )}
       <div className={!showFeatured ? styles.adjustUp : ''}>
@@ -207,6 +208,7 @@ export const query = graphql`
           }
           title
           featured
+          _rawDescription
           slug {
             current
           }

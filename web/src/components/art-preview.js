@@ -1,11 +1,11 @@
 import React from 'react'
-import { buildImageObj, cn } from '../lib/helpers'
+import { buildImageObj } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import styles from './art-preview.module.css'
 
 const ArtPreview = props => (
   <div className={styles.root} onClick={props.onClick}>
-    <div className={cn(styles.frame, props.className ? styles[props.className] : '')}>
+    <div className={styles.frame}>
       <figure
         className={styles.artFigure}
         style={
