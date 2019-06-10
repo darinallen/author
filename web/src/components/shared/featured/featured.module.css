@@ -30,8 +30,20 @@
 
 .home {
   margin: 1rem 0;
-  padding: 0;
   border-radius: 0;
+  padding: 0;
+
+  @media (--media-min-small) {
+    padding: 0 1rem;
+  }
+
+  @media (--media-min-medium) {
+    padding: 1rem 2rem;
+  }
+
+  @media (--media-min-large) {
+    padding: 1rem 3rem;
+  }
 }
 
 .item {
