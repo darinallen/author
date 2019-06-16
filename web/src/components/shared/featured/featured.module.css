@@ -3,32 +3,6 @@
 .root {
   background-color: var(--color-primary);
   color: #fff;
-  margin: 2rem 0 4rem 0;
-  padding: 1rem;
-  border-radius: 5px;
-
-  @media (--media-min-small) {
-    padding: 2rem 3rem 1rem 3rem;
-  }
-
-  @media (--media-min-medium) {
-    padding: 3rem 4rem 2rem 4rem;
-  }
-
-  @media (--media-min-large) {
-    padding: 3rem 5rem 2rem 5rem;
-  }
-}
-
-.sectionTitle {
-  text-align: center;
-
-  @media (--media-min-medium) {
-    margin-bottom: 3rem;
-  }
-}
-
-.home {
   margin: 1rem 0;
   border-radius: 0;
   padding: 0;
@@ -43,6 +17,14 @@
 
   @media (--media-min-large) {
     padding: 1rem 3rem;
+  }
+}
+
+.sectionTitle {
+  text-align: center;
+
+  @media (--media-min-medium) {
+    margin-bottom: 3rem;
   }
 }
 

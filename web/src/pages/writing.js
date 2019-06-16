@@ -26,8 +26,7 @@ const WritingPage = props => {
 
   const writingNodes = data && data.writing && mapEdgesToNodes(data.writing)
   const featuredNodes = getFeaturedNodes({ writingNodes })
-  console.log({ featuredNodes })
-  const showFeatured = !!featuredNodes.writingNodes.length
+  const showFeatured = featuredNodes.writingNodes ? !!featuredNodes.writingNodes.length : false
 
   return (
     <Layout>
@@ -38,8 +37,12 @@ const WritingPage = props => {
         titleBottom='Works'
         subtitle='Books & Flash Fiction'
       />
+      {showFeatured && (
+        <Container color='primary'>
+          <Featured nodes={featuredNodes} />
+        </Container>
+      )}
       <Container>
-        {showFeatured && <Featured nodes={featuredNodes} />}
         <h2 className={responsiveTitle2}>Writing</h2>
         {writingNodes && (
           <PreviewGrid>

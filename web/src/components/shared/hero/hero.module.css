@@ -9,6 +9,7 @@
   align-items: center;
   justify-content: space-between;
   flex-direction: column-reverse;
+  border-bottom: 1px solid var(--color-white);
 
   @media (--media-min-medium) {
     flex-direction: row;

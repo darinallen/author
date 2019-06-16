@@ -26,7 +26,7 @@ const ArtPage = props => {
 
   const artNodes = data && data.art && mapEdgesToNodes(data.art)
   const featuredNodes = getFeaturedNodes({ artNodes })
-  const showFeatured = !!featuredNodes.artNodes.length
+  const showFeatured = featuredNodes.artNodes ? !!featuredNodes.artNodes.length : false
 
   return (
     <Layout>
@@ -37,8 +37,13 @@ const ArtPage = props => {
         titleBottom='Art'
         subtitle='Original Designs & Abstract Creations'
       />
+
+      {showFeatured && (
+        <Container color='primary'>
+          <Featured nodes={featuredNodes} />
+        </Container>
+      )}
       <Container>
-        {showFeatured && <Featured nodes={featuredNodes} />}
         <h2 className={responsiveTitle2}>Art</h2>
         {artNodes && (
           <PreviewGrid>

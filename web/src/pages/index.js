@@ -4,6 +4,7 @@ import { mapEdgesToNodes, filterOutDocsWithoutSlugs, getFeaturedNodes } from '..
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
+import BlockContent from '../components/block-content'
 import Hero from '../components/shared/hero/hero'
 import tAnthony from '../components/shared/hero/tanthony.png'
 import Container from '../components/container'
@@ -27,6 +28,7 @@ const IndexPage = props => {
   }
 
   const site = (data || {}).site
+  const page = (data || {}).page
   const postNodes = (data || {}).posts
     ? mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs)
     : []
@@ -60,14 +62,8 @@ const IndexPage = props => {
         bottomAlign
       />
       <Container>
-        <h2 className={typography.responsiveTitle1}>Welcome</h2>
-        <p className={styles.welcome}>
-          Hello, and thank you for stopping by my website. This is a place where I will share recent
-          creative works, including books, short stories, digital art, and blog posts. My writing
-          covers a variety of genres, but I often weave in science fiction and fantasy themes. Blog
-          posts cover everything from technology to politics and world events. Please feel free to
-          drop me a note, and thanks so much for your interest!
-        </p>
+        <h2 className={typography.responsiveTitle1}>{page.title}</h2>
+        <BlockContent blocks={page._rawBody || []} />
         {writingNodes && (
           <PreviewGrid title='Recent writing' browseMoreHref='/writing/'>
             {writingNodes &&
@@ -86,7 +82,7 @@ const IndexPage = props => {
       </Container>
       {showFeatured && (
         <Container color='primary'>
-          <Featured nodes={featuredNodes} home />
+          <Featured nodes={featuredNodes} />
         </Container>
       )}
       <div className={!showFeatured ? styles.adjustUp : ''}>
@@ -115,6 +111,13 @@ export const query = graphql`
       title
       description
       keywords
+    }
+
+    page: sanityPage(_id: { regex: "/(drafts.|)home/" }) {
+      id
+      _id
+      title
+      _rawBody
     }
 
     posts: allSanityPost(limit: 6, sort: { fields: [publishedAt], order: DESC }) {

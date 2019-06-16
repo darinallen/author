@@ -1,13 +1,13 @@
 import React from 'react'
-import { buildImageObj, cn, getWritingUrl, getArtUrl } from '../../../lib/helpers'
+import { buildImageObj, getWritingUrl, getArtUrl } from '../../../lib/helpers'
 import { imageUrlFor } from '../../../lib/image-url'
 import BlockContent from '../../block-content'
 import ButtonLink from '../buttons/button-link.js'
 import { Link } from 'gatsby'
 import styles from './featured.module.css'
 
-const Featured = ({ nodes, home }) => (
-  <div className={cn(styles.root, home ? styles.home : '')}>
+const Featured = ({ nodes }) => (
+  <div className={styles.root}>
     <h2 className={styles.sectionTitle}>Featured</h2>
     {nodes.writingNodes &&
       nodes.writingNodes.map((node, index) => <FeaturedWriting node={node} key={index} />)}
@@ -21,13 +21,15 @@ const FeaturedWriting = ({ node }) => (
   <div className={styles.item}>
     <div className={styles.grid}>
       <div className={styles.bookAndButtonContainer}>
-        <img
-          className={styles.bookCover}
-          src={imageUrlFor(buildImageObj(node.mainImage))
-            .width(220)
-            .url()}
-          alt={node.mainImage.alt}
-        />
+        <Link to={getWritingUrl(node.slug.current)}>
+          <img
+            className={styles.bookCover}
+            src={imageUrlFor(buildImageObj(node.mainImage))
+              .width(220)
+              .url()}
+            alt={node.mainImage.alt}
+          />
+        </Link>
         {node.retailUrl && (
           <div className={styles.button}>
             <ButtonLink color='accent' url={node.retailUrl}>
@@ -47,7 +49,7 @@ const FeaturedWriting = ({ node }) => (
 const FeaturedArt = ({ node }) => (
   <div className={styles.item}>
     <div className={styles.grid}>
-      <div className={styles.figureContainer}>
+      <Link className={styles.figureContainer} to={getArtUrl(node.slug.current)}>
         <figure
           className={styles.artFigure}
           style={
@@ -67,7 +69,7 @@ const FeaturedArt = ({ node }) => (
             alt={node.mainImage.alt}
           />
         </figure>
-      </div>
+      </Link>
       <div className={styles.text}>
         <h3 className={styles.title}>{node.title}</h3>
         {node._rawDescription && <BlockContent blocks={node._rawDescription} />}
