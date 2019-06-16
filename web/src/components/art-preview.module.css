@@ -33,6 +33,7 @@
   max-height: 100%;
   width: 100%;
   padding: 4vmin;
+  transition: 0.5s;
 
   @media (--media-min-small) {
     border: solid 6vmin rgb(220, 220, 220);
@@ -133,6 +134,7 @@
   border-right-color: rgb(200, 200, 200);
   border-bottom-color: rgb(182, 182, 182);
   border-left-color: rgb(200, 200, 200);
+  filter: contrast(1.2);
 
   @media (--media-min-small) {
     transform: translateY(-3px);
@@ -180,8 +182,4 @@
   border-right-color: #eed;
   border-bottom-color: #ffe;
   border-left-color: #eed;
-}
-
-.frame:hover .art {
-  filter: contrast(1.2);
 }

@@ -25,12 +25,25 @@ function ArtDetails (props) {
         {mainImage && mainImage.asset && (
           <div className={styles.mainImage} onClick={() => setIsExpanded(true)}>
             <div className={styles.frame}>
-              <img
-                src={imageUrlFor(buildImageObj(mainImage))
-                  .width(1200)
-                  .url()}
-                alt={mainImage.alt}
-              />
+              <figure
+                className={styles.artFigure}
+                style={
+                  props.mainImage && {
+                    backgroundImage: `url(${props.mainImage.asset.metadata.lqip})`,
+                    paddingTop: `calc((100% / ${
+                      props.mainImage.asset.metadata.dimensions.aspectRatio
+                    }) - 2px)`
+                  }
+                }
+              >
+                <img
+                  className={styles.art}
+                  src={imageUrlFor(buildImageObj(mainImage))
+                    .width(1200)
+                    .url()}
+                  alt={mainImage.alt}
+                />
+              </figure>
             </div>
           </div>
         )}

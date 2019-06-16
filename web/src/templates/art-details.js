@@ -35,6 +35,12 @@ export const query = graphql`
         asset {
           _id
           url
+          metadata {
+            lqip
+            dimensions {
+              aspectRatio
+            }
+          }
         }
         alt
       }
