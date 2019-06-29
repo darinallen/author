@@ -11,10 +11,9 @@ import styles from './art-details.module.css'
 
 function ArtDetails (props) {
   const { id, _rawDescription, title, mainImage, creationDate } = props
-
   const [isExpanded, setIsExpanded] = useState(false)
-
   const disqusShortname = process.env.GATSBY_DISQUS_SHORTNAME
+
   const disqusConfig = {
     url: `${process.env.GATSBY_BASE_URL}${getArtUrl(props.slug.current)}`,
     identifier: id,
