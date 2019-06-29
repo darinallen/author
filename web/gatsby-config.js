@@ -2,8 +2,7 @@ const {
   api: { projectId, dataset }
 } = require('../studio/sanity.json')
 
-// let activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
-let activeEnv = process.env.GATSBY_ACTIVE_ENV
+let activeEnv = process.env.GATSBY_ACTIVE_ENV || process.env.NODE_ENV || 'development'
 
 console.log(`Using environment config: '${activeEnv}'`)
 

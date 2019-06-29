@@ -2,3 +2,18 @@
   base = "web/"
   command = "npm run build"
   publish = "web/public"
+
+# Production context: All deploys to the main
+# repository branch will inherit these settings.
+[context.production]
+
+  [context.production.environment]
+    GATSBY_ACTIVE_ENV="production"
+
+# Specific branch context: Deploys from this branch
+# will take these settings and override their
+# current ones.
+[context.staging]
+
+  [context.staging.environment]
+    GATSBY_ACTIVE_ENV="staging"
