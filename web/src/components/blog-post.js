@@ -1,6 +1,7 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React from 'react'
-import { buildImageObj } from '../lib/helpers'
+import Disqus from 'disqus-react'
+import { buildImageObj, getBlogUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import BlockContent from './block-content'
 import Container from './container'
@@ -9,7 +10,15 @@ import RoleList from './role-list'
 import styles from './blog-post.module.css'
 
 function BlogPost (props) {
-  const { _rawBody, authors, categories, title, mainImage, publishedAt } = props
+  const { id, _rawBody, authors, categories, title, mainImage, publishedAt } = props
+
+  const disqusShortname = process.env.GATSBY_DISQUS_SHORTNAME
+  const disqusConfig = {
+    url: `${process.env.GATSBY_BASE_URL}${getBlogUrl(props.slug.current)}`,
+    identifier: id,
+    title
+  }
+
   return (
     <article className={styles.root}>
       {mainImage && mainImage.asset && (
@@ -51,6 +60,7 @@ function BlogPost (props) {
             )}
           </aside>
         </div>
+        <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </Container>
     </article>
   )

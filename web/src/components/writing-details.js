@@ -12,8 +12,6 @@ import ButtonLink from './shared/buttons/button-link'
 import styles from './writing-details.module.css'
 
 function WritingDetails (props) {
-  console.log({ writingUrl: getWritingUrl(props.slug.current) })
-
   const {
     id,
     _rawSummary,
@@ -28,7 +26,7 @@ function WritingDetails (props) {
 
   const [activeTab, setActiveTab] = useState('summary')
 
-  const disqusShortname = process.env.GATBSY_DISQUS_SHORTNAME
+  const disqusShortname = process.env.GATSBY_DISQUS_SHORTNAME
   const disqusConfig = {
     url: `${process.env.GATSBY_BASE_URL}${getWritingUrl(props.slug.current)}`,
     identifier: id,

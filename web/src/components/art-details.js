@@ -1,7 +1,8 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React, { useState } from 'react'
 import Lightbox from 'react-images'
-import { buildImageObj } from '../lib/helpers'
+import Disqus from 'disqus-react'
+import { buildImageObj, getArtUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import BlockContent from './block-content'
 import Container from './container'
@@ -9,9 +10,16 @@ import Container from './container'
 import styles from './art-details.module.css'
 
 function ArtDetails (props) {
-  const { _rawDescription, title, mainImage, creationDate } = props
+  const { id, _rawDescription, title, mainImage, creationDate } = props
 
   const [isExpanded, setIsExpanded] = useState(false)
+
+  const disqusShortname = process.env.GATSBY_DISQUS_SHORTNAME
+  const disqusConfig = {
+    url: `${process.env.GATSBY_BASE_URL}${getArtUrl(props.slug.current)}`,
+    identifier: id,
+    title
+  }
 
   return (
     <div className={styles.root}>
@@ -58,6 +66,7 @@ function ArtDetails (props) {
           />
         )}
         {_rawDescription && <BlockContent blocks={_rawDescription} />}
+        <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </Container>
     </div>
   )
