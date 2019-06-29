@@ -13,7 +13,7 @@ function BlogPost (props) {
   const { id, _rawBody, authors, categories, title, mainImage, publishedAt } = props
   const disqusShortname = process.env.GATSBY_DISQUS_SHORTNAME
   const disqusConfig = {
-    url: `${process.env.GATSBY_BASE_URL}${getBlogUrl(props.slug.current)}`,
+    url: `${process.env.GATSBY_BASE_URL}${getBlogUrl(props.publishedAt, props.slug.current)}`,
     identifier: id,
     title
   }
