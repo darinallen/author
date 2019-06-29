@@ -24,8 +24,6 @@ function WritingDetails (props) {
     retailUrl
   } = props
 
-  console.log('url: ', process.env)
-
   const [activeTab, setActiveTab] = useState('summary')
 
   const disqusShortname = process.env.GATSBY_DISQUS_SHORTNAME
@@ -34,8 +32,6 @@ function WritingDetails (props) {
     identifier: id,
     title
   }
-
-  console.log(disqusConfig)
 
   const formattedReleaseDate =
     differenceInDays(new Date(releaseDate), new Date()) > 3
