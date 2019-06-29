@@ -2,7 +2,6 @@ import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React, { useState } from 'react'
 import ReactCSSTransitionReplace from 'react-css-transition-replace'
 import Disqus from 'disqus-react'
-import config from '../config/staging'
 import { buildImageObj, cn, getWritingUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import Hero from './shared/hero/hero'
@@ -29,9 +28,9 @@ function WritingDetails (props) {
 
   const [activeTab, setActiveTab] = useState('summary')
 
-  const disqusShortname = 'staging-t-anthony-allen'
+  const disqusShortname = process.env.GATBSY_DISQUS_SHORTNAME
   const disqusConfig = {
-    url: `${config.baseUrl}${getWritingUrl(props.slug.current)}`,
+    url: `${process.env.GATSBY_BASE_URL}${getWritingUrl(props.slug.current)}`,
     identifier: id,
     title
   }
