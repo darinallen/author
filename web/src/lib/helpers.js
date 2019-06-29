@@ -25,6 +25,10 @@ export function getBlogUrl (publishedAt, slug) {
   return `/blog/${format(publishedAt, 'YYYY/MM')}/${slug.current || slug}/`
 }
 
+export function getPhotoUrl (slug) {
+  return `/photos/${slug.current || slug}/`
+}
+
 export function buildImageObj (source) {
   const imageObj = {
     asset: { _ref: source.asset._ref || source.asset._id }
@@ -36,10 +40,11 @@ export function buildImageObj (source) {
   return imageObj
 }
 
-export function getFeaturedNodes ({ writingNodes, artNodes }) {
+export function getFeaturedNodes ({ writingNodes, artNodes, photoNodes }) {
   const nodes = {}
   const featuredWritingNodes = writingNodes ? writingNodes.filter(node => node.featured) : []
   const featuredArtNodes = artNodes ? artNodes.filter(node => node.featured) : []
+  const featuredPhotoNodes = photoNodes ? photoNodes.filter(node => node.featured) : []
 
   if (featuredWritingNodes.length) {
     nodes.writingNodes = featuredWritingNodes
@@ -47,6 +52,10 @@ export function getFeaturedNodes ({ writingNodes, artNodes }) {
 
   if (featuredArtNodes.length) {
     nodes.artNodes = featuredArtNodes
+  }
+
+  if (featuredPhotoNodes.length) {
+    nodes.photoNodes = featuredPhotoNodes
   }
 
   return nodes

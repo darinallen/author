@@ -13,6 +13,7 @@ import figure from './figure'
 import mainImage from './mainImage'
 import page from './page'
 import person from './person'
+import photo from './photo'
 import post from './post'
 import postAuthor from './postAuthor'
 import siteSettings from './siteSettings'
@@ -36,6 +37,7 @@ export default createSchema({
     mainImage,
     page,
     person,
+    photo,
     post,
     postAuthor,
     siteSettings,

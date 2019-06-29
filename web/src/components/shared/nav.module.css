@@ -54,7 +54,7 @@
     display: block;
   }
 
-  @media (--media-min-small) {
+  @media (--media-min-smedium) {
     display: none;
   }
 }
@@ -79,7 +79,7 @@
     }
   }
 
-  @media (--media-max-small) {
+  @media (--media-max-smedium) {
     position: absolute;
     background: var(--color-black);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
@@ -96,7 +96,7 @@
     }
   }
 
-  @media (--media-min-small) {
+  @media (--media-min-smedium) {
     display: block;
 
     @nest & ul {

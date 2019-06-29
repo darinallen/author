@@ -10,7 +10,7 @@ import tAnthony from '../components/shared/hero/tanthony.png'
 import Container from '../components/container'
 import PreviewGrid from '../components/shared/preview-grid'
 import WritingPreview from '../components/writing-preview'
-import ArtGrid from '../components/art-grid'
+import LightboxGrid from '../components/lightbox-grid'
 import Featured from '../components/shared/featured/featured'
 import BlogPostPreview from '../components/blog-post-preview'
 import styles from './index.module.css'
@@ -41,9 +41,16 @@ const IndexPage = props => {
     ? mapEdgesToNodes(data.art).filter(filterOutDocsWithoutSlugs)
     : []
 
-  const featuredNodes = getFeaturedNodes({ writingNodes, artNodes })
+  const photoNodes = (data || {}).photos
+    ? mapEdgesToNodes(data.photos).filter(filterOutDocsWithoutSlugs)
+    : []
 
-  const showFeatured = !!featuredNodes.writingNodes.length || !!featuredNodes.artNodes.length
+  const featuredNodes = getFeaturedNodes({ writingNodes, artNodes, photoNodes })
+
+  const showFeatured =
+    !!featuredNodes.writingNodes.length ||
+    !!featuredNodes.artNodes.length ||
+    !!featuredNodes.photoNodes.length
 
   if (!site) {
     throw new Error(
@@ -76,7 +83,12 @@ const IndexPage = props => {
         )}
         {artNodes && (
           <PreviewGrid title='Recent art' browseMoreHref='/art/'>
-            <ArtGrid nodes={artNodes} />
+            <LightboxGrid nodes={artNodes} type='art' />
+          </PreviewGrid>
+        )}
+        {photoNodes && (
+          <PreviewGrid title='Recent photos' browseMoreHref='/photos/'>
+            <LightboxGrid nodes={photoNodes} type='photo' />
           </PreviewGrid>
         )}
       </Container>
@@ -120,7 +132,7 @@ export const query = graphql`
       _rawBody
     }
 
-    posts: allSanityPost(limit: 6, sort: { fields: [publishedAt], order: DESC }) {
+    posts: allSanityPost(limit: 3, sort: { fields: [publishedAt], order: DESC }) {
       edges {
         node {
           id
@@ -191,7 +203,7 @@ export const query = graphql`
       }
     }
 
-    art: allSanityArt(limit: 6, sort: { fields: [creationDate], order: DESC }) {
+    art: allSanityArt(limit: 3, sort: { fields: [creationDate], order: DESC }) {
       edges {
         node {
           id
@@ -217,6 +229,34 @@ export const query = graphql`
           }
           categories {
             title
+          }
+        }
+      }
+    }
+
+    photos: allSanityPhoto(limit: 3, sort: { fields: [creationDate], order: DESC }) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          featured
+          _rawDescription
+          slug {
+            current
           }
         }
       }

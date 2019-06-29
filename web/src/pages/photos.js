@@ -7,13 +7,13 @@ import SEO from '../components/seo'
 import Layout from '../containers/layout'
 import Hero from '../components/shared/hero/hero'
 import Featured from '../components/shared/featured/featured'
-import art from '../components/shared/hero/art.png'
+import camera from '../components/shared/hero/camera.png'
 import PreviewGrid from '../components/shared/preview-grid'
 import LightboxGrid from '../components/lightbox-grid'
 
 import { responsiveTitle2 } from '../components/typography.module.css'
 
-const ArtPage = props => {
+const PhotosPage = props => {
   const { data, errors } = props
 
   if (errors) {
@@ -24,30 +24,24 @@ const ArtPage = props => {
     )
   }
 
-  const artNodes = data && data.art && mapEdgesToNodes(data.art)
-  const featuredNodes = getFeaturedNodes({ artNodes })
-  const showFeatured = featuredNodes.artNodes ? !!featuredNodes.artNodes.length : false
+  const photoNodes = data && data.photos && mapEdgesToNodes(data.photos)
+  const featuredNodes = getFeaturedNodes({ photoNodes })
+  const showFeatured = featuredNodes.photoNodes ? !!featuredNodes.photoNodes.length : false
 
   return (
     <Layout>
-      <SEO title='Art' />
-      <Hero
-        image={art}
-        titleTop='Digital '
-        titleBottom='Art'
-        subtitle='Original Designs & Abstract Creations'
-      />
-
+      <SEO title='Photos' />
+      <Hero image={camera} titleTop='Digital ' titleBottom='Photos' subtitle='Styled & Enhanced' />
       {showFeatured && (
         <Container color='primary'>
           <Featured nodes={featuredNodes} />
         </Container>
       )}
       <Container>
-        <h2 className={responsiveTitle2}>Art</h2>
-        {artNodes && (
+        <h2 className={responsiveTitle2}>Photos</h2>
+        {photoNodes && (
           <PreviewGrid>
-            <LightboxGrid nodes={artNodes} type='art' />
+            <LightboxGrid nodes={photoNodes} type='photo' />
           </PreviewGrid>
         )}
       </Container>
@@ -55,11 +49,11 @@ const ArtPage = props => {
   )
 }
 
-export default ArtPage
+export default PhotosPage
 
 export const query = graphql`
-  query ArtPageQuery {
-    art: allSanityArt(sort: { fields: [creationDate], order: DESC }) {
+  query PhotosPageQuery {
+    photos: allSanityPhoto(sort: { fields: [creationDate], order: DESC }) {
       edges {
         node {
           id
@@ -82,9 +76,6 @@ export const query = graphql`
           _rawDescription
           slug {
             current
-          }
-          categories {
-            title
           }
         }
       }

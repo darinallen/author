@@ -80,6 +80,43 @@ async function createArtDetailsPages (graphql, actions, reporter) {
   })
 }
 
+async function createPhotoDetailsPages (graphql, actions, reporter) {
+  const { createPage, createPageDependency } = actions
+  const result = await graphql(`
+    {
+      allSanityPhoto(filter: { slug: { current: { ne: null } } }) {
+        edges {
+          node {
+            id
+            slug {
+              current
+            }
+          }
+        }
+      }
+    }
+  `)
+
+  if (result.errors) throw result.errors
+
+  const photoEdges = (result.data.allSanityPhoto || {}).edges || []
+
+  photoEdges.forEach((edge, index) => {
+    const { id, slug = {} } = edge.node
+    const path = `/photos/${slug.current}/`
+
+    reporter.info(`Creating photo details page: ${path}`)
+
+    createPage({
+      path,
+      component: require.resolve('./src/templates/photo-details.js'),
+      context: { id }
+    })
+
+    createPageDependency({ path, nodeId: id })
+  })
+}
+
 async function createBlogPostPages (graphql, actions, reporter) {
   const { createPage, createPageDependency } = actions
   const result = await graphql(`
@@ -124,6 +161,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   console.log('Created writing details pages')
   await createArtDetailsPages(graphql, actions, reporter)
   console.log('Created art details pages')
+  await createPhotoDetailsPages(graphql, actions, reporter)
+  console.log('Created photo details pages')
   await createBlogPostPages(graphql, actions, reporter)
   console.log('Created blog post pages')
 }

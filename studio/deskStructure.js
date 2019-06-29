@@ -5,7 +5,16 @@ import MdBrush from 'react-icons/lib/md/brush'
 import Home from 'react-icons/lib/md/home'
 import FaFileO from 'react-icons/lib/fa/file-o'
 
-const hiddenTypes = ['category', 'page', 'person', 'post', 'siteSettings', 'writing', 'art']
+const hiddenTypes = [
+  'category',
+  'page',
+  'person',
+  'post',
+  'siteSettings',
+  'writing',
+  'art',
+  'photo'
+]
 
 export default () =>
   S.list()
@@ -30,6 +39,10 @@ export default () =>
         .schemaType('art')
         .child(S.documentTypeList('art').title('Art'))
         .icon(MdBrush),
+      S.listItem()
+        .title('Photos')
+        .schemaType('photo')
+        .child(S.documentTypeList('photo').title('Photos')),
       S.listItem()
         .title('Blog posts')
         .schemaType('post')

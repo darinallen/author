@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import Lightbox from 'react-images'
 import { navigate } from 'gatsby'
-import { getArtUrl } from '../lib/helpers'
+import { getArtUrl, getPhotoUrl } from '../lib/helpers'
 import ArtPreview from './art-preview'
+import PhotoPreview from './photo-preview'
 
-const ArtGrid = ({ nodes }) => {
+const LightboxGrid = ({ nodes, type }) => {
   const [isExpanded, setIsExpanded] = useState(false)
   const [lightboxIndex, setLightboxIndex] = useState(0)
   const imageUrls = nodes.map(node => ({ src: node.mainImage.asset.url }))
@@ -22,11 +23,19 @@ const ArtGrid = ({ nodes }) => {
     setLightboxIndex(++currentIndex)
   }
 
+  const getUrl = type === 'art' ? getArtUrl : getPhotoUrl
+
   return (
     <>
       {nodes &&
         nodes.map((node, index) => (
-          <li key={node.id}>{<ArtPreview {...node} onClick={() => expandLightbox(index)} />}</li>
+          <li key={node.id}>
+            {type === 'art' ? (
+              <ArtPreview {...node} onClick={() => expandLightbox(index)} />
+            ) : (
+              <PhotoPreview {...node} onClick={() => expandLightbox(index)} />
+            )}
+          </li>
         ))}
       {isExpanded && (
         <Lightbox
@@ -36,7 +45,7 @@ const ArtGrid = ({ nodes }) => {
           onClickPrev={() => goToPrev(lightboxIndex)}
           onClickNext={() => goToNext(lightboxIndex)}
           onClose={() => setIsExpanded(false)}
-          onClickImage={() => navigate(getArtUrl(nodes[lightboxIndex].slug.current))}
+          onClickImage={() => navigate(getUrl(nodes[lightboxIndex].slug.current))}
           backdropClosesModal
         />
       )}
@@ -44,4 +53,4 @@ const ArtGrid = ({ nodes }) => {
   )
 }
 
-export default ArtGrid
+export default LightboxGrid
