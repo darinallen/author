@@ -6,6 +6,7 @@ import { imageUrlFor } from '../lib/image-url'
 import styles from './writing-preview.module.css'
 
 const WritingPreview = props => {
+  console.log({ writingUrl: getWritingUrl(props.slug.current) })
   return (
     <Link className={styles.root} to={getWritingUrl(props.slug.current)}>
       <div className={styles.content}>

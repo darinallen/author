@@ -1,7 +1,9 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React, { useState } from 'react'
 import ReactCSSTransitionReplace from 'react-css-transition-replace'
-import { buildImageObj, cn } from '../lib/helpers'
+import Disqus from 'disqus-react'
+import config from '../config/staging'
+import { buildImageObj, cn, getWritingUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import Hero from './shared/hero/hero'
 import BlockContent from './block-content'
@@ -11,7 +13,10 @@ import ButtonLink from './shared/buttons/button-link'
 import styles from './writing-details.module.css'
 
 function WritingDetails (props) {
+  console.log({ writingUrl: getWritingUrl(props.slug.current) })
+
   const {
+    id,
     _rawSummary,
     _rawExcerpt,
     categories,
@@ -23,6 +28,13 @@ function WritingDetails (props) {
   } = props
 
   const [activeTab, setActiveTab] = useState('summary')
+
+  const disqusShortname = 'staging-t-anthony-allen'
+  const disqusConfig = {
+    url: `${config.baseUrl}${getWritingUrl(props.slug.current)}`,
+    identifier: id,
+    title
+  }
 
   const formattedReleaseDate =
     differenceInDays(new Date(releaseDate), new Date()) > 3
@@ -122,6 +134,7 @@ function WritingDetails (props) {
             </div>
           )}
         </div>
+        <Disqus.DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
       </Container>
     </div>
   )
