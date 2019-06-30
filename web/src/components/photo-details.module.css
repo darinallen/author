@@ -37,11 +37,7 @@
   left: 0;
   width: 100%;
   transition: opacity 1s ease-in;
-  border: solid 2px;
-  border-top-color: #ccb;
-  border-right-color: #eed;
-  border-bottom-color: #ffe;
-  border-left-color: #eed;
+  box-shadow: 0 0 3px 0 rgba(0, 0, 0, 0.35) inset, 0 3px 5px 3px rgba(0, 0, 0, 0.35);
 }
 
 /* .mainContent {
