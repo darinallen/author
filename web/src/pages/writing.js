@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, getFeaturedNodes } from '../lib/helpers'
+import { mapEdgesToNodes } from '../lib/helpers'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
@@ -25,8 +25,8 @@ const WritingPage = props => {
   }
 
   const writingNodes = data && data.writing && mapEdgesToNodes(data.writing)
-  const featuredNodes = getFeaturedNodes({ writingNodes })
-  const showFeatured = featuredNodes.writingNodes ? !!featuredNodes.writingNodes.length : false
+  const featuredWritingNodes = data && data.featuredWriting && mapEdgesToNodes(data.featuredWriting)
+  const showFeatured = featuredWritingNodes ? !!featuredWritingNodes.length : false
 
   return (
     <Layout>
@@ -39,7 +39,7 @@ const WritingPage = props => {
       />
       {showFeatured && (
         <Container color='primary'>
-          <Featured nodes={featuredNodes} />
+          <Featured writingNodes={featuredWritingNodes} />
         </Container>
       )}
       <Container>
@@ -64,6 +64,40 @@ export default WritingPage
 export const query = graphql`
   query WritingPageQuery {
     writing: allSanityWriting(sort: { fields: [releaseDate], order: DESC }) {
+      edges {
+        node {
+          id
+          releaseDate
+          mainImage {
+            asset {
+              _id
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          featured
+          title
+          retailUrl
+          preview
+          _rawSummary
+          _rawExcerpt
+          slug {
+            current
+          }
+          categories {
+            title
+            id
+          }
+        }
+      }
+    }
+
+    featuredWriting: allSanityWriting(limit: 3, filter: { featured: { eq: true } }) {
       edges {
         node {
           id

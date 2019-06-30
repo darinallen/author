@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, getFeaturedNodes } from '../lib/helpers'
+import { mapEdgesToNodes } from '../lib/helpers'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
@@ -25,8 +25,8 @@ const PhotosPage = props => {
   }
 
   const photoNodes = data && data.photos && mapEdgesToNodes(data.photos)
-  const featuredNodes = getFeaturedNodes({ photoNodes })
-  const showFeatured = featuredNodes.photoNodes ? !!featuredNodes.photoNodes.length : false
+  const featuredPhotoNodes = data && data.featuredPhotos && mapEdgesToNodes(data.featuredPhotos)
+  const showFeatured = featuredPhotoNodes ? !!featuredPhotoNodes.length : false
 
   return (
     <Layout>
@@ -34,7 +34,7 @@ const PhotosPage = props => {
       <Hero image={camera} titleTop='Digital ' titleBottom='Photos' subtitle='Styled & Enhanced' />
       {showFeatured && (
         <Container color='primary'>
-          <Featured nodes={featuredNodes} />
+          <Featured photoNodes={featuredPhotoNodes} />
         </Container>
       )}
       <Container>
@@ -54,6 +54,34 @@ export default PhotosPage
 export const query = graphql`
   query PhotosPageQuery {
     photos: allSanityPhoto(sort: { fields: [creationDate], order: DESC }) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          featured
+          title
+          _rawDescription
+          slug {
+            current
+          }
+        }
+      }
+    }
+
+    featuredPhotos: allSanityPhoto(limit: 3, filter: { featured: { eq: true } }) {
       edges {
         node {
           id

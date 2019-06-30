@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs, getFeaturedNodes } from '../lib/helpers'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
@@ -37,20 +37,28 @@ const IndexPage = props => {
     ? mapEdgesToNodes(data.writing).filter(filterOutDocsWithoutSlugs)
     : []
 
+  const featuredWritingNodes = (data || {}).featuredWriting
+    ? mapEdgesToNodes(data.featuredWriting).filter(filterOutDocsWithoutSlugs)
+    : []
+
   const artNodes = (data || {}).art
     ? mapEdgesToNodes(data.art).filter(filterOutDocsWithoutSlugs)
+    : []
+
+  const featuredArtNodes = (data || {}).featuredArt
+    ? mapEdgesToNodes(data.featuredArt).filter(filterOutDocsWithoutSlugs)
     : []
 
   const photoNodes = (data || {}).photos
     ? mapEdgesToNodes(data.photos).filter(filterOutDocsWithoutSlugs)
     : []
 
-  const featuredNodes = getFeaturedNodes({ writingNodes, artNodes, photoNodes })
+  const featuredPhotoNodes = (data || {}).featuredPhotos
+    ? mapEdgesToNodes(data.featuredPhotos).filter(filterOutDocsWithoutSlugs)
+    : []
 
   const showFeatured =
-    !!featuredNodes.writingNodes.length ||
-    !!featuredNodes.artNodes.length ||
-    !!featuredNodes.photoNodes.length
+    !!featuredWritingNodes.length || !!featuredArtNodes.length || !!featuredPhotoNodes.length
 
   if (!site) {
     throw new Error(
@@ -94,7 +102,11 @@ const IndexPage = props => {
       </Container>
       {showFeatured && (
         <Container color='primary'>
-          <Featured nodes={featuredNodes} />
+          <Featured
+            writingNodes={featuredWritingNodes}
+            artNodes={featuredArtNodes}
+            photoNodes={featuredPhotoNodes}
+          />
         </Container>
       )}
       <div className={!showFeatured ? styles.adjustUp : ''}>
@@ -203,6 +215,41 @@ export const query = graphql`
       }
     }
 
+    featuredWriting: allSanityWriting(limit: 3, filter: { featured: { eq: true } }) {
+      edges {
+        node {
+          id
+          releaseDate
+          mainImage {
+            asset {
+              _id
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          preview
+          classification
+          retailUrl
+          featured
+          _rawExcerpt
+          _rawSummary
+          slug {
+            current
+          }
+          categories {
+            title
+            id
+          }
+        }
+      }
+    }
+
     art: allSanityArt(limit: 3, sort: { fields: [creationDate], order: DESC }) {
       edges {
         node {
@@ -234,7 +281,66 @@ export const query = graphql`
       }
     }
 
+    featuredArt: allSanityArt(limit: 3, filter: { featured: { eq: true } }) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          featured
+          _rawDescription
+          slug {
+            current
+          }
+          categories {
+            title
+          }
+        }
+      }
+    }
+
     photos: allSanityPhoto(limit: 3, sort: { fields: [creationDate], order: DESC }) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          featured
+          _rawDescription
+          slug {
+            current
+          }
+        }
+      }
+    }
+
+    featuredPhotos: allSanityPhoto(limit: 3, filter: { featured: { eq: true } }) {
       edges {
         node {
           id

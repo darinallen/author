@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, getFeaturedNodes } from '../lib/helpers'
+import { mapEdgesToNodes } from '../lib/helpers'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
@@ -25,8 +25,8 @@ const ArtPage = props => {
   }
 
   const artNodes = data && data.art && mapEdgesToNodes(data.art)
-  const featuredNodes = getFeaturedNodes({ artNodes })
-  const showFeatured = featuredNodes.artNodes ? !!featuredNodes.artNodes.length : false
+  const featuredArtNodes = data && data.featuredArt && mapEdgesToNodes(data.featuredArt)
+  const showFeatured = featuredArtNodes ? !!featuredArtNodes.length : false
 
   return (
     <Layout>
@@ -40,7 +40,7 @@ const ArtPage = props => {
 
       {showFeatured && (
         <Container color='primary'>
-          <Featured nodes={featuredNodes} />
+          <Featured artNodes={featuredArtNodes} />
         </Container>
       )}
       <Container>
@@ -60,6 +60,37 @@ export default ArtPage
 export const query = graphql`
   query ArtPageQuery {
     art: allSanityArt(sort: { fields: [creationDate], order: DESC }) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          featured
+          title
+          _rawDescription
+          slug {
+            current
+          }
+          categories {
+            title
+          }
+        }
+      }
+    }
+
+    featuredArt: allSanityArt(limit: 3, filter: { featured: { eq: true } }) {
       edges {
         node {
           id

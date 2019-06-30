@@ -20,7 +20,7 @@
 .image {
   margin-top: 0.8rem;
   max-height: 10.5rem;
-  max-width: 100%;
+  max-width: 80%;
   align-self: center;
   margin-bottom: 1.5rem;
   -webkit-filter: contrast(1.1) drop-shadow(-4px 4px 4px rgba(0, 0, 0, 0.5));
@@ -28,6 +28,7 @@
 
   @media (--media-min-medium) {
     max-height: 14rem;
+    max-width: 22rem;
     margin-top: 0;
     margin-bottom: 0;
   }
@@ -35,6 +36,7 @@
 
 .bottomAlign {
   max-height: 12rem;
+  max-width: 100%;
   margin-bottom: 0;
   -webkit-filter: contrast(1.1);
   filter: none;

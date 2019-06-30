@@ -6,14 +6,12 @@ import ButtonLink from '../buttons/button-link.js'
 import { Link } from 'gatsby'
 import styles from './featured.module.css'
 
-const Featured = ({ nodes }) => (
+const Featured = ({ writingNodes, artNodes, photoNodes }) => (
   <div className={styles.root}>
     <h2 className={styles.sectionTitle}>Featured</h2>
-    {nodes.writingNodes &&
-      nodes.writingNodes.map((node, index) => <FeaturedWriting node={node} key={index} />)}
-    {nodes.artNodes && nodes.artNodes.map((node, index) => <FeaturedArt node={node} key={index} />)}
-    {nodes.photoNodes &&
-      nodes.photoNodes.map((node, index) => <FeaturedPhoto node={node} key={index} />)}
+    {writingNodes && writingNodes.map((node, index) => <FeaturedWriting node={node} key={index} />)}
+    {artNodes && artNodes.map((node, index) => <FeaturedArt node={node} key={index} />)}
+    {photoNodes && photoNodes.map((node, index) => <FeaturedPhoto node={node} key={index} />)}
   </div>
 )
 
