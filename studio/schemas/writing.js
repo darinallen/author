@@ -69,17 +69,6 @@ export default {
       }
     },
     {
-      name: 'preview',
-      title: 'Preview Card Description',
-      type: 'string',
-      description: 'This brief description appears at the bottom of preview cards',
-      validation: Rule =>
-        Rule.required()
-          .min(10)
-          .max(80)
-          .error('Preview Description must be between 10 and 80 characters')
-    },
-    {
       name: 'summary',
       title: 'Summary',
       type: 'blockContent'

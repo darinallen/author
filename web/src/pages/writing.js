@@ -94,7 +94,6 @@ export const query = graphql`
           title
           environment
           retailUrl
-          preview
           _rawSummary
           _rawExcerpt
           slug {
@@ -129,7 +128,6 @@ export const query = graphql`
           title
           environment
           retailUrl
-          preview
           _rawSummary
           _rawExcerpt
           slug {
