@@ -29,47 +29,70 @@ const IndexPage = props => {
 
   const site = (data || {}).site
   const page = (data || {}).page
-  const postNodes = (data || {}).posts
-    ? mapEdgesToNodes(data.posts)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterNodesByEnv)
-    : []
 
-  const writingNodes = (data || {}).writing
-    ? mapEdgesToNodes(data.writing)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterNodesByEnv)
-    : []
+  let postNodes,
+    writingNodes,
+    featuredWritingNodes,
+    artNodes,
+    featuredArtNodes,
+    photoNodes,
+    featuredPhotoNodes
 
-  const featuredWritingNodes = (data || {}).featuredWriting
-    ? mapEdgesToNodes(data.featuredWriting)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterNodesByEnv)
-    : []
+  if (process.env.GATSBY_ACTIVE_ENV === 'production') {
+    postNodes = (data || {}).prodPosts
+      ? mapEdgesToNodes(data.prodPosts).filter(filterOutDocsWithoutSlugs)
+      : []
 
-  const artNodes = (data || {}).art
-    ? mapEdgesToNodes(data.art)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterNodesByEnv)
-    : []
+    writingNodes = (data || {}).prodWriting
+      ? mapEdgesToNodes(data.prodWriting).filter(filterOutDocsWithoutSlugs)
+      : []
 
-  const featuredArtNodes = (data || {}).featuredArt
-    ? mapEdgesToNodes(data.featuredArt)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterNodesByEnv)
-    : []
+    featuredWritingNodes = (data || {}).prodFeaturedWriting
+      ? mapEdgesToNodes(data.prodFeaturedWriting).filter(filterOutDocsWithoutSlugs)
+      : []
 
-  const photoNodes = (data || {}).photos
-    ? mapEdgesToNodes(data.photos)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterNodesByEnv)
-    : []
+    artNodes = (data || {}).prodArt
+      ? mapEdgesToNodes(data.prodArt).filter(filterOutDocsWithoutSlugs)
+      : []
 
-  const featuredPhotoNodes = (data || {}).featuredPhotos
-    ? mapEdgesToNodes(data.featuredPhotos)
-      .filter(filterOutDocsWithoutSlugs)
-      .filter(filterNodesByEnv)
-    : []
+    featuredArtNodes = (data || {}).prodFeaturedArt
+      ? mapEdgesToNodes(data.prodFeaturedArt).filter(filterOutDocsWithoutSlugs)
+      : []
+
+    photoNodes = (data || {}).prodPhotos
+      ? mapEdgesToNodes(data.prodPhotos).filter(filterOutDocsWithoutSlugs)
+      : []
+
+    featuredPhotoNodes = (data || {}).prodFeaturedPhotos
+      ? mapEdgesToNodes(data.prodFeaturedPhotos).filter(filterOutDocsWithoutSlugs)
+      : []
+  } else {
+    postNodes = (data || {}).posts
+      ? mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs)
+      : []
+
+    writingNodes = (data || {}).writing
+      ? mapEdgesToNodes(data.writing).filter(filterOutDocsWithoutSlugs)
+      : []
+
+    featuredWritingNodes = (data || {}).featuredWriting
+      ? mapEdgesToNodes(data.featuredWriting).filter(filterOutDocsWithoutSlugs)
+      : []
+
+    artNodes = (data || {}).art ? mapEdgesToNodes(data.art).filter(filterOutDocsWithoutSlugs) : []
+
+    featuredArtNodes = (data || {}).featuredArt
+      ? mapEdgesToNodes(data.featuredArt).filter(filterOutDocsWithoutSlugs)
+      : []
+
+    photoNodes = (data || {}).photos
+      ? mapEdgesToNodes(data.photos).filter(filterOutDocsWithoutSlugs)
+      : []
+
+    featuredPhotoNodes = (data || {}).featuredPhotos
+      ? mapEdgesToNodes(data.featuredPhotos).filter(filterOutDocsWithoutSlugs)
+      : []
+  }
 
   const showFeatured =
     !!featuredWritingNodes.length || !!featuredArtNodes.length || !!featuredPhotoNodes.length
@@ -361,6 +384,262 @@ export const query = graphql`
     }
 
     featuredPhotos: allSanityPhoto(limit: 3, filter: { featured: { eq: true } }) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          environment
+          featured
+          _rawDescription
+          slug {
+            current
+          }
+        }
+      }
+    }
+
+    prodPosts: allSanityPost(
+      limit: 3
+      sort: { fields: [publishedAt], order: DESC }
+      filter: { environment: { eq: "production" } }
+    ) {
+      edges {
+        node {
+          id
+          publishedAt
+          mainImage {
+            crop {
+              _key
+              _type
+              top
+              bottom
+              left
+              right
+            }
+            hotspot {
+              _key
+              _type
+              x
+              y
+              height
+              width
+            }
+            asset {
+              _id
+            }
+            alt
+          }
+          title
+          environment
+          _rawExcerpt
+          slug {
+            current
+          }
+        }
+      }
+    }
+
+    prodWriting: allSanityWriting(
+      limit: 6
+      sort: { fields: [releaseDate], order: DESC }
+      filter: { environment: { eq: "production" } }
+    ) {
+      edges {
+        node {
+          id
+          releaseDate
+          mainImage {
+            asset {
+              _id
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          environment
+          preview
+          classification
+          retailUrl
+          featured
+          _rawExcerpt
+          _rawSummary
+          slug {
+            current
+          }
+          categories {
+            title
+            id
+          }
+        }
+      }
+    }
+
+    prodFeaturedWriting: allSanityWriting(
+      limit: 3
+      filter: { featured: { eq: true }, environment: { eq: "production" } }
+    ) {
+      edges {
+        node {
+          id
+          releaseDate
+          mainImage {
+            asset {
+              _id
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          environment
+          preview
+          classification
+          retailUrl
+          featured
+          _rawExcerpt
+          _rawSummary
+          slug {
+            current
+          }
+          categories {
+            title
+            id
+          }
+        }
+      }
+    }
+
+    prodArt: allSanityArt(
+      limit: 3
+      sort: { fields: [creationDate], order: DESC }
+      filter: { environment: { eq: "production" } }
+    ) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          environment
+          featured
+          _rawDescription
+          slug {
+            current
+          }
+          categories {
+            title
+          }
+        }
+      }
+    }
+
+    prodFeaturedArt: allSanityArt(
+      limit: 3
+      filter: { featured: { eq: true }, environment: { eq: "production" } }
+    ) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          environment
+          featured
+          _rawDescription
+          slug {
+            current
+          }
+          categories {
+            title
+          }
+        }
+      }
+    }
+
+    prodPhotos: allSanityPhoto(
+      limit: 3
+      sort: { fields: [creationDate], order: DESC }
+      filter: { environment: { eq: "production" } }
+    ) {
+      edges {
+        node {
+          id
+          creationDate
+          mainImage {
+            asset {
+              _id
+              url
+              metadata {
+                lqip
+                dimensions {
+                  aspectRatio
+                }
+              }
+            }
+            alt
+          }
+          title
+          environment
+          featured
+          _rawDescription
+          slug {
+            current
+          }
+        }
+      }
+    }
+
+    prodFeaturedPhotos: allSanityPhoto(
+      limit: 3
+      filter: { featured: { eq: true }, environment: { eq: "production" } }
+    ) {
       edges {
         node {
           id
