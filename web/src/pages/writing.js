@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes } from '../lib/helpers'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs, filterNodesByEnv } from '../lib/helpers'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
@@ -24,8 +24,18 @@ const WritingPage = props => {
     )
   }
 
-  const writingNodes = data && data.writing && mapEdgesToNodes(data.writing)
-  const featuredWritingNodes = data && data.featuredWriting && mapEdgesToNodes(data.featuredWriting)
+  const writingNodes =
+    data &&
+    data.writing &&
+    mapEdgesToNodes(data.writing)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
+  const featuredWritingNodes =
+    data &&
+    data.featuredWriting &&
+    mapEdgesToNodes(data.featuredWriting)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
   const showFeatured = featuredWritingNodes ? !!featuredWritingNodes.length : false
 
   return (
@@ -82,6 +92,7 @@ export const query = graphql`
           }
           featured
           title
+          environment
           retailUrl
           preview
           _rawSummary
@@ -116,6 +127,7 @@ export const query = graphql`
           }
           featured
           title
+          environment
           retailUrl
           preview
           _rawSummary

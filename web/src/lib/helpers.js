@@ -39,3 +39,14 @@ export function buildImageObj (source) {
 
   return imageObj
 }
+
+export function filterNodesByEnv (node) {
+  console.log('Disqus Shortname: ', process.env.GATSBY_DISQUS_SHORTNAME)
+  if (process.env.GATSBY_ACTIVE_ENVIRONMENT === 'production') {
+    console.log('PROD')
+    return node.environment === 'production'
+  } else {
+    console.log('NOT PROD')
+    return true
+  }
+}

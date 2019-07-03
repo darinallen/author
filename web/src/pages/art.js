@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes } from '../lib/helpers'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs, filterNodesByEnv } from '../lib/helpers'
 import Container from '../components/container'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
@@ -24,8 +24,18 @@ const ArtPage = props => {
     )
   }
 
-  const artNodes = data && data.art && mapEdgesToNodes(data.art)
-  const featuredArtNodes = data && data.featuredArt && mapEdgesToNodes(data.featuredArt)
+  const artNodes =
+    data &&
+    data.art &&
+    mapEdgesToNodes(data.art)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
+  const featuredArtNodes =
+    data &&
+    data.featuredArt &&
+    mapEdgesToNodes(data.featuredArt)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
   const showFeatured = featuredArtNodes ? !!featuredArtNodes.length : false
 
   return (
@@ -79,6 +89,7 @@ export const query = graphql`
           }
           featured
           title
+          environment
           _rawDescription
           slug {
             current
@@ -110,6 +121,7 @@ export const query = graphql`
           }
           featured
           title
+          environment
           _rawDescription
           slug {
             current

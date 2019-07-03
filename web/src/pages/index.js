@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs, filterNodesByEnv } from '../lib/helpers'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
@@ -30,31 +30,45 @@ const IndexPage = props => {
   const site = (data || {}).site
   const page = (data || {}).page
   const postNodes = (data || {}).posts
-    ? mapEdgesToNodes(data.posts).filter(filterOutDocsWithoutSlugs)
+    ? mapEdgesToNodes(data.posts)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
     : []
 
   const writingNodes = (data || {}).writing
-    ? mapEdgesToNodes(data.writing).filter(filterOutDocsWithoutSlugs)
+    ? mapEdgesToNodes(data.writing)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
     : []
 
   const featuredWritingNodes = (data || {}).featuredWriting
-    ? mapEdgesToNodes(data.featuredWriting).filter(filterOutDocsWithoutSlugs)
+    ? mapEdgesToNodes(data.featuredWriting)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
     : []
 
   const artNodes = (data || {}).art
-    ? mapEdgesToNodes(data.art).filter(filterOutDocsWithoutSlugs)
+    ? mapEdgesToNodes(data.art)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
     : []
 
   const featuredArtNodes = (data || {}).featuredArt
-    ? mapEdgesToNodes(data.featuredArt).filter(filterOutDocsWithoutSlugs)
+    ? mapEdgesToNodes(data.featuredArt)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
     : []
 
   const photoNodes = (data || {}).photos
-    ? mapEdgesToNodes(data.photos).filter(filterOutDocsWithoutSlugs)
+    ? mapEdgesToNodes(data.photos)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
     : []
 
   const featuredPhotoNodes = (data || {}).featuredPhotos
-    ? mapEdgesToNodes(data.featuredPhotos).filter(filterOutDocsWithoutSlugs)
+    ? mapEdgesToNodes(data.featuredPhotos)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
     : []
 
   const showFeatured =
@@ -172,6 +186,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           _rawExcerpt
           slug {
             current
@@ -198,6 +213,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           preview
           classification
           retailUrl
@@ -233,6 +249,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           preview
           classification
           retailUrl
@@ -269,6 +286,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           featured
           _rawDescription
           slug {
@@ -300,6 +318,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           featured
           _rawDescription
           slug {
@@ -331,6 +350,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           featured
           _rawDescription
           slug {
@@ -359,6 +379,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           featured
           _rawDescription
           slug {

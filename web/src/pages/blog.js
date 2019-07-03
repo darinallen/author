@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes } from '../lib/helpers'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs, filterNodesByEnv } from '../lib/helpers'
 import PreviewGrid from '../components/shared/preview-grid'
 import BlogPostPreview from '../components/blog-post-preview'
 import Container from '../components/container'
@@ -23,7 +23,12 @@ const BlogPage = props => {
     )
   }
 
-  const postNodes = data && data.posts && mapEdgesToNodes(data.posts)
+  const postNodes =
+    data &&
+    data.posts &&
+    mapEdgesToNodes(data.posts)
+      .filter(filterOutDocsWithoutSlugs)
+      .filter(filterNodesByEnv)
 
   return (
     <Layout>
@@ -60,6 +65,7 @@ export const query = graphql`
             alt
           }
           title
+          environment
           _rawExcerpt
           slug {
             current
