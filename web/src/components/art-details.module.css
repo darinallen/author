@@ -12,15 +12,6 @@
   display: flex;
   justify-content: center;
   padding-bottom: 2rem;
-
-  @nest & img {
-    border: solid 2px;
-    border-top-color: #ccb;
-    border-right-color: #eed;
-    border-bottom-color: #ffe;
-    border-left-color: #eed;
-    min-height: 100%;
-  }
 }
 
 .frame {
@@ -92,11 +83,7 @@
   left: 0;
   width: 100%;
   transition: opacity 1s ease-in;
-  border: solid 2px;
-  border-top-color: #ccb;
-  border-right-color: #eed;
-  border-bottom-color: #ffe;
-  border-left-color: #eed;
+  border: solid 1px black;
 }
 
 /* .mainContent {

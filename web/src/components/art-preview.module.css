@@ -173,9 +173,5 @@
   left: 0;
   width: 100%;
   transition: opacity 1s ease-in;
-  border: solid 2px;
-  border-top-color: #ccb;
-  border-right-color: #eed;
-  border-bottom-color: #ffe;
-  border-left-color: #eed;
+  border: solid 1px black;
 }
