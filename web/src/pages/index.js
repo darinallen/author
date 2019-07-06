@@ -1,6 +1,6 @@
 import React from 'react'
 import { graphql } from 'gatsby'
-import { mapEdgesToNodes, filterOutDocsWithoutSlugs, filterNodesByEnv } from '../lib/helpers'
+import { mapEdgesToNodes, filterOutDocsWithoutSlugs } from '../lib/helpers'
 import GraphQLErrorList from '../components/graphql-error-list'
 import SEO from '../components/seo'
 import Layout from '../containers/layout'
@@ -10,7 +10,8 @@ import tAnthony from '../components/shared/hero/tanthony.png'
 import Container from '../components/container'
 import PreviewGrid from '../components/shared/preview-grid'
 import WritingPreview from '../components/writing-preview'
-import LightboxGrid from '../components/lightbox-grid'
+import ArtPreview from '../components/art-preview'
+import PhotoPreview from '../components/photo-preview'
 import Featured from '../components/shared/featured/featured'
 import BlogPostPreview from '../components/blog-post-preview'
 import styles from './index.module.css'
@@ -128,12 +129,22 @@ const IndexPage = props => {
         )}
         {artNodes && (
           <PreviewGrid title='Recent art' browseMoreHref='/art/'>
-            <LightboxGrid nodes={artNodes} type='art' />
+            {artNodes &&
+              artNodes.map(node => (
+                <li key={node.id}>
+                  <ArtPreview {...node} />
+                </li>
+              ))}
           </PreviewGrid>
         )}
         {photoNodes && (
           <PreviewGrid title='Recent photos' browseMoreHref='/photos/'>
-            <LightboxGrid nodes={photoNodes} type='photo' />
+            {photoNodes &&
+              photoNodes.map(node => (
+                <li key={node.id}>
+                  <PhotoPreview {...node} />
+                </li>
+              ))}
           </PreviewGrid>
         )}
       </Container>

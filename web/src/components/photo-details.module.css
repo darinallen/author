@@ -12,6 +12,7 @@
   margin: 0 auto 2rem auto;
   max-width: 400px;
   background: #eee;
+  cursor: pointer;
 
   @nest & img {
     position: absolute;

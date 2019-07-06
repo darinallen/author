@@ -30,8 +30,8 @@ function ArtDetails (props) {
             : format(new Date(creationDate), 'MMMM Do YYYY')}
         </div>
         {mainImage && mainImage.asset && (
-          <div className={styles.mainImage} onClick={() => setIsExpanded(true)}>
-            <div className={styles.frame}>
+          <div className={styles.mainImage}>
+            <div className={styles.frame} onClick={() => setIsExpanded(true)}>
               <figure
                 className={styles.artFigure}
                 style={

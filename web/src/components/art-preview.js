@@ -1,10 +1,11 @@
 import React from 'react'
-import { buildImageObj } from '../lib/helpers'
+import { Link } from 'gatsby'
+import { buildImageObj, getArtUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
 import styles from './art-preview.module.css'
 
 const ArtPreview = props => (
-  <div className={styles.root} onClick={props.onClick}>
+  <Link className={styles.root} to={getArtUrl(props.slug.current)}>
     <div className={styles.frame}>
       <figure
         className={styles.artFigure}
@@ -26,7 +27,7 @@ const ArtPreview = props => (
         />
       </figure>
     </div>
-  </div>
+  </Link>
 )
 
 export default ArtPreview
