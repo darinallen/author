@@ -11,7 +11,6 @@
 .mainImage {
   display: flex;
   justify-content: center;
-  padding-bottom: 2rem;
 }
 
 .frame {
@@ -124,4 +123,14 @@
 .categoriesHeadline {
   composes: base from './typography.module.css';
   margin: 0.5rem 0 0;
+}
+
+.zoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-size: var(--font-small-size);
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
 }

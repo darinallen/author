@@ -1,6 +1,7 @@
 import { format, distanceInWords, differenceInDays } from 'date-fns'
 import React, { useState } from 'react'
 import Lightbox from 'react-images'
+import { MdZoomIn } from 'react-icons/md'
 import Disqus from 'disqus-react'
 import { buildImageObj, getPhotoUrl } from '../lib/helpers'
 import { imageUrlFor } from '../lib/image-url'
@@ -52,7 +53,10 @@ function PhotoDetails (props) {
             </figure>
           </div>
         )}
-
+        <div className={styles.zoom}>
+          <MdZoomIn />
+          <span>Click image to zoom</span>
+        </div>
         {mainImage && mainImage.asset && isExpanded && (
           <Lightbox
             images={[{ src: mainImage.asset.url }]}

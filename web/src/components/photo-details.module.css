@@ -9,7 +9,7 @@
 }
 
 .mainImage {
-  margin: 0 auto 2rem auto;
+  margin: 0 auto;
   max-width: 400px;
   background: #eee;
   cursor: pointer;
@@ -74,4 +74,14 @@
   @nest & ul li {
     padding: 0.25rem 0;
   }
+}
+
+.zoom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-style: italic;
+  font-size: var(--font-small-size);
+  padding-top: 0.5rem;
+  padding-bottom: 1.5rem;
 }
